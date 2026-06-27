@@ -1,0 +1,203 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { Send, CheckCircle2, Loader2 } from "lucide-react";
+
+const SUBJECTS = [
+  "Account Support",
+  "Deposits & Withdrawals",
+  "Sports Betting",
+  "Casino Games",
+  "Promotions",
+  "Other",
+] as const;
+
+type Status = "idle" | "submitting" | "success";
+
+export default function ContactForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [fields, setFields] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) {
+    setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    // Simulate API call
+    setTimeout(() => setStatus("success"), 1500);
+  }
+
+  const inputBase =
+    "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-white placeholder-slate-600 outline-none backdrop-blur-sm transition-all duration-200 focus:border-[#FF6B00]/50 focus:bg-white/[0.06] focus:ring-2 focus:ring-[#FF6B00]/15";
+
+  const labelBase =
+    "mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400";
+
+  return (
+    <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF6B00]/6 blur-3xl"
+      />
+
+      <div className="relative z-10 mx-auto max-w-2xl">
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
+            Send Us A Message
+          </span>
+          <h2 className="mt-5 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+            How Can We{" "}
+            <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
+              Help You?
+            </span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
+            Fill out the form below and our team will get back to you as soon as possible.
+          </p>
+        </div>
+
+        {/* Card */}
+        <div
+          className="overflow-hidden rounded-3xl p-px"
+          style={{ background: "linear-gradient(135deg, rgba(255,107,0,0.3) 0%, rgba(255,255,255,0.06) 50%, rgba(19,136,8,0.2) 100%)" }}
+        >
+          <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-[#081425]/95 p-7 backdrop-blur-xl md:p-10">
+            <div aria-hidden className="pointer-events-none absolute -left-12 -top-12 h-44 w-44 rounded-full bg-[#FF6B00]/8 blur-2xl" />
+            <div aria-hidden className="pointer-events-none absolute -bottom-12 -right-12 h-44 w-44 rounded-full bg-[#138808]/6 blur-2xl" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.025] via-transparent to-transparent" />
+
+            {status === "success" ? (
+              <div className="relative flex flex-col items-center gap-5 py-10 text-center">
+                <div className="grid h-20 w-20 place-items-center rounded-full border border-[#138808]/40 bg-[#138808]/15">
+                  <CheckCircle2 size={40} strokeWidth={1.5} className="text-[#138808]" />
+                </div>
+                <div>
+                  <p className="text-xl font-extrabold text-white">Message Sent!</p>
+                  <p className="mt-2 text-sm text-slate-400">
+                    Thanks for reaching out. Our team will get back to you within 24 hours.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    setStatus("idle");
+                    setFields({ name: "", email: "", subject: "", message: "" });
+                  }}
+                  className="mt-2 rounded-xl border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-bold text-white transition hover:bg-white/10"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="relative space-y-5">
+                {/* Name + Email */}
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className={labelBase}>Full Name</label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={fields.name}
+                      onChange={handleChange}
+                      placeholder="Enter your name"
+                      className={inputBase}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className={labelBase}>Email Address</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={fields.email}
+                      onChange={handleChange}
+                      placeholder="Enter your email"
+                      className={inputBase}
+                    />
+                  </div>
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label htmlFor="subject" className={labelBase}>Subject</label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    value={fields.subject}
+                    onChange={handleChange}
+                    className={[
+                      inputBase,
+                      "cursor-pointer",
+                      fields.subject === "" ? "text-slate-600" : "text-white",
+                    ].join(" ")}
+                  >
+                    <option value="" disabled className="bg-[#081425] text-slate-400">
+                      Select a topic
+                    </option>
+                    {SUBJECTS.map((s) => (
+                      <option key={s} value={s} className="bg-[#081425] text-white">
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label htmlFor="message" className={labelBase}>Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={fields.message}
+                    onChange={handleChange}
+                    placeholder="How can we help you?"
+                    className={[inputBase, "resize-none"].join(" ")}
+                  />
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#FF6B00] py-4 text-base font-bold text-white shadow-lg shadow-[#FF6B00]/25 transition-all duration-300 hover:scale-[1.01] hover:bg-[#FF8A00] hover:shadow-[#FF6B00]/40 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 size={18} strokeWidth={2} className="animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      <Send size={17} strokeWidth={2} />
+                      Send Message
+                    </>
+                  )}
+                </button>
+
+                <p className="text-center text-[11px] text-slate-600">
+                  We typically respond within 24 hours · Your data is always secure
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

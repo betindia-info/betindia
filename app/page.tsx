@@ -1,15 +1,350 @@
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-[#0B0F19] text-white">
-      <div className="container mx-auto px-6 py-20">
-        <h1 className="text-6xl font-bold">
-          BetIndia
-        </h1>
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  Gamepad2,
+  RefreshCw,
+  Crown,
+  Gem,
+  Users,
+  Plane,
+  ArrowRight,
+} from "lucide-react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import TrustBar from "@/components/sections/TrustBar";
+import WhyBetIndia from "@/components/sections/WhyBetIndia";
+import Promotions from "@/components/sections/Promotions";
+import HowItWorks from "@/components/sections/HowItWorks";
+import LiveCricketMatches from "@/components/sections/LiveCricketMatches";
+import LatestArticles from "@/components/sections/LatestArticles";
+import FAQ from "@/components/sections/FAQ";
+import { staticPageMetadata } from "@/lib/seo";
+import { getPage } from "@/lib/cms";
+import { homeContent } from "@/data/home";
+import { CTA_LINKS } from "@/lib/cta-links";
 
-        <p className="mt-4 text-xl text-gray-400">
-          Play Smart. Win Bigger.
-        </p>
-      </div>
-    </main>
+export const metadata: Metadata = staticPageMetadata({
+  title: "BetIndia",
+  description:
+    "India's most trusted sports betting and casino platform. Live cricket betting, IPL odds, casino games, Aviator and more. Join now and claim your welcome bonus.",
+  path: "/",
+  absoluteTitle: "BetIndia — India's Premium Sportsbook & Casino",
+});
+
+export const revalidate = 300;
+
+export default async function Home() {
+  const page = await getPage("home");
+
+  // Merge home page sections with fallback defaults
+  const seo = { ...homeContent.seo, ...(page.seo ?? {}) };
+
+  const liveCasinoItems = seo.liveCasinoItems && seo.liveCasinoItems.length > 0 ? seo.liveCasinoItems : homeContent.seo.liveCasinoItems;
+  const liveCasinoCards = [
+    { icon: Gamepad2, title: liveCasinoItems[0]?.title ?? "Live Blackjack", description: liveCasinoItems[0]?.description ?? "", accent: "#FF6B00" as const },
+    { icon: RefreshCw, title: liveCasinoItems[1]?.title ?? "Live Roulette", description: liveCasinoItems[1]?.description ?? "", accent: "#138808" as const },
+    { icon: Crown, title: liveCasinoItems[2]?.title ?? "Live Baccarat", description: liveCasinoItems[2]?.description ?? "", accent: "#FF6B00" as const },
+  ];
+
+  const popularCasinoItems = seo.popularCasinoItems && seo.popularCasinoItems.length > 0 ? seo.popularCasinoItems : homeContent.seo.popularCasinoItems;
+  const popularCasinoCards = [
+    { icon: Gem, title: popularCasinoItems[0]?.title ?? "Online Slots", description: popularCasinoItems[0]?.description ?? "", accent: "#FF6B00" as const },
+    { icon: Users, title: popularCasinoItems[1]?.title ?? "Teen Patti Online", description: popularCasinoItems[1]?.description ?? "", accent: "#138808" as const },
+    { icon: Plane, title: popularCasinoItems[2]?.title ?? "Aviator Game", description: popularCasinoItems[2]?.description ?? "", accent: "#FF6B00" as const },
+  ];
+
+  return (
+    <>
+      <Header />
+      <main>
+        {/* 1. Hero */}
+        <Hero content={page.hero || homeContent.hero} />
+<section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto max-w-5xl">
+            <div className="text-center mb-6">
+              
+              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
+            </div>
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300 text-center ">
+           Welcome to BetIndia, a trusted online casino in India offering Live Blackjack, Live Roulette, Live Baccarat, Online Slots, Teen Patti, Aviator, and premium casino entertainment. Enjoy secure gameplay, fast withdrawals, professional live dealers, and an immersive gaming experience designed for players across India.
+Whether you're looking for an online betting ID or immersive casino entertainment, BetIndia offers everything in one platform.
+            </p>
+          </div>
+        </section>
+
+        {/* Trust Bar (Optional dashboard stat indicator) */}
+        <TrustBar content={page.trustBar || homeContent.trustBar} />
+
+        {/* 2. About BetIndia Section (Centered Title & Centered Text) */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto max-w-5xl">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+                {seo.aboutTitle}
+              </h2>
+              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
+            </div>
+            <p className="mx-auto text-sm sm:text-base leading-relaxed text-slate-300 text-center ">
+              {seo.aboutText}
+            </p>
+          </div>
+        </section>
+
+        {/* 3. Why Choose Section */}
+        <WhyBetIndia content={page.seo} />
+
+        {/* 4. Exclusive Promotions Section */}
+        <Promotions content={page.seo} />
+
+        {/* 5. How It Works Section */}
+        <HowItWorks content={page.seo} />
+
+        {/* 6. Live Casino Games Section */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8">
+          <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#138808]/7 blur-2xl" />
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <div className="mb-12 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
+                <span className="relative flex h-1.5 w-1.5 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
+                </span>
+                Live Action
+              </span>
+              <h2 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl whitespace-pre-line">
+                {seo.liveCasinoTitle}
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base whitespace-pre-line">
+                {seo.liveCasinoSubtitle}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {liveCasinoCards.map(({ icon: Icon, title: cardTitle, description, accent }) => {
+                const isOrange = accent === "#FF6B00";
+                return (
+                  <div
+                    key={cardTitle}
+                    className={[
+                      "group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl",
+                      "transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.07]",
+                      isOrange
+                        ? "hover:border-[#FF6B00]/40 hover:shadow-2xl hover:shadow-[#FF6B00]/10"
+                        : "hover:border-[#138808]/40 hover:shadow-2xl hover:shadow-[#138808]/10",
+                    ].join(" ")}
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+                    />
+                    <div
+                      className="relative flex h-40 items-center justify-center overflow-hidden"
+                      style={{ background: `radial-gradient(ellipse at 50% 110%, ${accent}22 0%, transparent 65%)` }}
+                    >
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        style={{ background: `radial-gradient(ellipse at 50% 80%, ${accent}28 0%, transparent 60%)` }}
+                      />
+                      <span
+                        className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider"
+                        style={{ borderColor: `${accent}40`, background: `${accent}15`, color: accent }}
+                      >
+                        <span className="relative flex h-1.5 w-1.5 shrink-0">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ backgroundColor: accent }} />
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accent }} />
+                        </span>
+                        Live
+                      </span>
+                      <div
+                        className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                        style={{
+                          background: `${accent}18`,
+                          borderColor: `${accent}35`,
+                          color: accent,
+                          boxShadow: `0 4px 28px ${accent}20`,
+                        }}
+                      >
+                        <Icon size={28} strokeWidth={1.6} />
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 p-5">
+                      <h3 className="text-lg font-bold text-white">{cardTitle}</h3>
+                      <p className="flex-1 text-sm leading-relaxed text-slate-400 whitespace-pre-line">{description}</p>
+                      <Link
+                        href={CTA_LINKS.signup}
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold transition-all duration-200 group-hover:gap-2.5"
+                        style={{ color: accent }}
+                      >
+                        Play Now
+                        <ArrowRight size={14} strokeWidth={2.5} />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Popular Casino Games Section */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8">
+          <div aria-hidden className="pointer-events-none absolute left-0 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF6B00]/6 blur-2xl" />
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <div className="mb-12 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
+                Top Choice
+              </span>
+              <h2 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl whitespace-pre-line">
+                {seo.popularCasinoTitle}
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base whitespace-pre-line">
+                {seo.popularCasinoSubtitle}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {popularCasinoCards.map(({ icon: Icon, title: cardTitle, description, accent }) => {
+                const isOrange = accent === "#FF6B00";
+                return (
+                  <div
+                    key={cardTitle}
+                    className={[
+                      "group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl",
+                      "transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.07]",
+                      isOrange
+                        ? "hover:border-[#FF6B00]/40 hover:shadow-2xl hover:shadow-[#FF6B00]/10"
+                        : "hover:border-[#138808]/40 hover:shadow-2xl hover:shadow-[#138808]/10",
+                    ].join(" ")}
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+                    />
+                    <div
+                      className="relative flex h-40 items-center justify-center overflow-hidden"
+                      style={{ background: `radial-gradient(ellipse at 50% 110%, ${accent}22 0%, transparent 65%)` }}
+                    >
+                      <div
+                        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        style={{ background: `radial-gradient(ellipse at 50% 80%, ${accent}28 0%, transparent 60%)` }}
+                      />
+                      <div
+                        className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                        style={{
+                          background: `${accent}18`,
+                          borderColor: `${accent}35`,
+                          color: accent,
+                          boxShadow: `0 4px 28px ${accent}20`,
+                        }}
+                      >
+                        <Icon size={28} strokeWidth={1.6} />
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 p-5">
+                      <h3 className="text-lg font-bold text-white">{cardTitle}</h3>
+                      <p className="flex-1 text-sm leading-relaxed text-slate-400 whitespace-pre-line">{description}</p>
+                      <Link
+                        href={CTA_LINKS.signup}
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm font-bold transition-all duration-200 group-hover:gap-2.5"
+                        style={{ color: accent }}
+                      >
+                        Play Now
+                        <ArrowRight size={14} strokeWidth={2.5} />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Live Cricket Matches widget */}
+        <LiveCricketMatches />
+
+        {/* 8. Get Your Cricket Betting ID in India Section (Centered Title & Centered Text) */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8 border-t border-white/[0.04]">
+          <div className="relative z-10 mx-auto max-w-5xl">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+                {seo.cricketIdTitle}
+              </h2>
+              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
+            </div>
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300 text-center">
+              {seo.cricketIdText}
+            </p>
+          </div>
+        </section>
+
+        {/* 9. SEO Text Blocks (Editorial Split Stacks) */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
+          <div className="relative z-10 mx-auto max-w-7xl space-y-16">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              <div className="lg:col-span-1">
+                <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{seo.trustedProviderTitle}</h2>
+                <div className="mt-4 h-1 w-16 bg-[#138808] rounded-full" />
+              </div>
+              <div className="lg:col-span-2 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.trustedProviderText}</div>
+            </div>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 border-t border-white/[0.06] pt-12">
+              <div className="lg:col-span-1">
+                <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{seo.sportsbookPlatformTitle}</h2>
+                <div className="mt-4 h-1 w-16 bg-[#FF6B00] rounded-full" />
+              </div>
+              <div className="lg:col-span-2 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.sportsbookPlatformText}</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Latest Articles section */}
+        <LatestArticles content={page.latestArticles} />
+
+        {/* 10. Frequently Asked Questions */}
+        <FAQ content={page.faq} defaultContent={homeContent.faq} />
+
+        {/* 11. Final CTA */}
+        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto max-w-4xl">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-xl md:p-14">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B00]/60 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#138808]/40 to-transparent" />
+
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#FF6B00]">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#FF6B00]" />
+                Get Started Now
+              </span>
+
+              <h2 className="mx-auto mt-6 max-w-2xl text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl whitespace-pre-line">
+                {seo.playSmartTitle}
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base whitespace-pre-line">
+                {seo.playSmartText}
+              </p>
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link
+                  href={CTA_LINKS.signup}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6B00] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#FF6B00]/25 transition-all duration-300 hover:scale-[1.02] hover:bg-[#FF8A00] hover:shadow-[#FF6B00]/35 sm:w-auto"
+                >
+                  Play Now
+                  <span aria-hidden>&rarr;</span>
+                </Link>
+                <Link
+                  href="/sports"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/5 px-8 py-4 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-[#FF6B00]/40 hover:bg-white/10 sm:w-auto"
+                >
+                  Bet on Sports
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

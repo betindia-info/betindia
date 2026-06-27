@@ -1,0 +1,52 @@
+rules_version = '2';
+
+// BetIndia Firestore security rules.
+//
+// Apply these in the Firebase console (Firestore â†’ Rules â†’ Publish). The admin
+// CMS needs the /posts write rule below, so publish these before editing posts.
+//
+// Note: blog posts are public content, so reads are open. The app hides posts
+// where `published == false` in code (see lib/blog-data.ts), so drafts don't
+// appear on the site â€” but they remain readable via the raw API. If you need
+// drafts to be truly private, constrain list queries to
+// `where("published","==",true)` and tighten the read rule (this needs a
+// composite index on published + order).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Blog posts â€” public read; writes allowed for any signed-in user. The
+    // admin CMS at /admin/content writes via the Web SDK as the logged-in admin.
+    // Auth is gated client-side, so anyone you create in Firebase Auth can edit.
+    match /posts/{slug} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+
+    // Editable page hero content -- public read; writes allowed for signed-in admins.
+    match /pageContent/{pageId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    // CMS pages (current structure): pages/{pageId} + its "section" subcollection.
+    // Public read so the website can render content; writes for signed-in admins
+    // (used by the admin editor and syncCMS). Covers both the page doc and every
+    // section document beneath it.
+    match /pages/{pageId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+
+      match /section/{sectionId} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
+    }
+
+    // Everything else is locked down by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
