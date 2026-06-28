@@ -120,15 +120,14 @@ export function getFirebaseStorage(): FirebaseStorage {
   return instance;
 }
 
-/** Lazy proxy so importing this module never calls getAuth() at load time. */
-export const db = new Proxy({} as Firestore, {
-  get(_target, prop, receiver) {
-    const instance = getDbInstance();
-    if (!instance) return undefined;
-    const value = Reflect.get(instance as object, prop, receiver);
-    return typeof value === "function" ? value.bind(instance) : value;
-  },
-});
+/**
+ * Real Firestore instance (or null, cast to Firestore, when env isn't
+ * configured). This must NOT be a Proxy: the Firestore SDK's collection()/doc()
+ * validate the argument with an internal brand check that a Proxy fails with
+ * "Expected first argument to collection() to be ... FirebaseFirestore".
+ * getDbInstance() is memoized, so this initializes Firestore at most once.
+ */
+export const db = getDbInstance() as Firestore;
 
 /** Lazy proxy — safe to import during static build / sitemap generation. */
 export const auth = new Proxy({} as Auth, {

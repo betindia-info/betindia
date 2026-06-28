@@ -21,29 +21,13 @@ export default function LiveHero() {
         {/* LEFT — Content */}
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
           {/* Badge */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#FF6B00] sm:tracking-[0.18em]">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
-            </span>
-            {liveContent.hero.eyebrow}
-          </span>
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {liveContent.hero.title.includes("Real Time") ? (
-              <>
-                Bet In{" "}
-                <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF8A00] to-[#FF6B00] bg-clip-text text-transparent">
-                  Real Time
-                </span>
-              </>
-            ) : (
-              liveContent.hero.title
-            )}
+            {liveContent.hero.eyebrow}
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-300">
-            {liveContent.hero.description}
+            {liveContent.hero.title}
           </p>
 
           {/* CTAs */}

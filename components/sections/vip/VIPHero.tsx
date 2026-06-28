@@ -28,27 +28,13 @@ export default function VIPHero({ content }: { content?: Partial<typeof DEFAULT_
         {/* LEFT — Content */}
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
           {/* Badge */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#FF6B00]" />
-            {data.eyebrow}
-          </span>
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {data.title.includes("VIP Privileges") ? (
-              <>
-                {data.title.split("VIP Privileges")[0]}
-                <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF8A00] to-[#FF6B00] bg-clip-text text-transparent">
-                  VIP Privileges
-                </span>
-                {data.title.split("VIP Privileges")[1]}
-              </>
-            ) : (
-              data.title
-            )}
+            {data.eyebrow}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">
-            {data.description}
+            {data.title}
           </p>
 
           {/* CTAs */}

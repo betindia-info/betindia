@@ -22,30 +22,13 @@ export default function FootballHero({ content }: { content?: Partial<typeof foo
 
         {/* LEFT */}
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#138808]/30 bg-[#138808]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#138808]">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#138808] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#138808]" />
-            </span>
-            {data.eyebrow}
-          </span>
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {data.title.includes("Biggest Football") ? (
-              <>
-                {data.title.split("Biggest Football")[0]}
-                <span className="bg-gradient-to-r from-[#138808] via-[#22c55e] to-[#138808] bg-clip-text text-transparent">
-                  Biggest Football
-                </span>
-                {data.title.split("Biggest Football")[1]}
-              </>
-            ) : (
-              data.title
-            )}
+            {data.eyebrow}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">
-            {data.description}
+            {data.title}
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">

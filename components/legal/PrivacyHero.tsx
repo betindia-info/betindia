@@ -23,27 +23,13 @@ export default function PrivacyHero({ content }: { content?: Partial<typeof DEFA
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/25 bg-[#FF6B00]/8 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
-          <FileText size={11} strokeWidth={2} />
-          {data.eyebrow}
-        </span>
 
         <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-          {data.title.includes("Policy") ? (
-            <>
-              {data.title.split("Policy")[0]}
-              <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF8A00] to-[#FF6B00] bg-clip-text text-transparent">
-                Policy
-              </span>
-              {data.title.split("Policy")[1]}
-            </>
-          ) : (
-            data.title
-          )}
-        </h1>
+            {data.eyebrow}
+          </h1>
 
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-400">
-          {data.description}
+          {data.title}
         </p>
 
         <p className="mt-4 text-xs font-semibold text-slate-600">

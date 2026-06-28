@@ -52,11 +52,12 @@ export default function BlogHero({ content = DEFAULT_CONTENT }: { content?: Page
         </span>
 
         <h1 className="mt-6 text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          {content.title}{" "}
-          <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
-            {content.highlightedTitle}
-          </span>
-        </h1>
+            {content.eyebrow}
+          </h1>
+
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
+            {content.title} {content.highlightedTitle}
+          </p>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg">
           Stay informed with expert insights, sports betting guides, casino strategies, Aviator tips, and the latest gaming trends from the BetIndia team.

@@ -49,24 +49,13 @@ export default function SportsHero({ content = DEFAULT_CONTENT }: { content?: Pa
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
         {/* LEFT â€” Content */}
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
-            </span>
-            {content.eyebrow}
-          </span>
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {content.title}
-            <br />
-            <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
-              {content.highlightedTitle}
-            </span>
+            {content.eyebrow}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">
-            {content.description}
+            {content.title} {content.highlightedTitle}
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">

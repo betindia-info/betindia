@@ -24,22 +24,12 @@ export default function BadmintonHero({
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#0ea5e9]/30 bg-[#0ea5e9]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0ea5e9]">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0ea5e9] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#0ea5e9]" />
-            </span>
-            {data.eyebrow}
-          </span>
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {data.title}{" "}
-            <span className="bg-gradient-to-r from-[#FF6B00] via-[#0ea5e9] to-[#138808] bg-clip-text text-transparent">
-              {data.titleAccent}
-            </span>
+            {data.eyebrow}
           </h1>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">{data.description}</p>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">{data.title}</p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
             <Link
