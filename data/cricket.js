@@ -1,6 +1,5 @@
 export const cricketContent = {
   hero: {
-    eyebrow: "Live Cricket Betting",
     title: "IPL & International Matches",
     description: "Bet on your favorite cricket matches with the best odds.",
     imageUrl: "",

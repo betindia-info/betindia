@@ -1,6 +1,5 @@
 export const tableGamesContent = {
   hero: {
-    eyebrow: "Table Games",
     title: "Premium Table Games?",
     description:
       "Enjoy classic casino favourites including Blackjack, Roulette, Baccarat, Teen Patti, Poker, and Andar Bahar in one place. Join thousands of players enjoying premium table games, live dealer action, secure gameplay, and fast withdrawals on BetIndia.",

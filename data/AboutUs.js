@@ -1,6 +1,5 @@
 export const aboutUsContent = {
   hero: {
-    eyebrow: "About BetIndia",
     title: "India's Trusted Online Sports Betting & Casino Platform",
     description:
       "Discover a secure platform for live sports betting, online casino games, live dealers, and premium gaming experiences designed for players across India.",

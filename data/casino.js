@@ -1,6 +1,5 @@
 export const casinoContent = {
   hero: {
-    eyebrow: "Best Online Casino in India & Live Casino Games Platform",
     title: "Play Live Casino Games, Online Slots, Teen Patti",
     highlightedTitle: "Enjoy Real-Time Entertainment",
     description:

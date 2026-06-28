@@ -1,6 +1,5 @@
 export const contactUsContent = {
   hero: {
-    eyebrow: "Contact Us",
     title: "Contact BetIndia Customer Support",
     description:
       "Whether you have questions about your account, payment methods, sports betting, live betting, live casino games, or betting markets, BetIndia is committed to providing fast, secure, and reliable customer support for players across India.",

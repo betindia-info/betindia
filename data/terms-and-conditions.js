@@ -1,6 +1,5 @@
 export const termsAndConditionsContent = {
   hero: {
-    eyebrow: "Terms & Conditions",
     title: "Rules of Use",
     description: "Please read our terms of use before utilizing our platform services.",
     imageUrl: "",

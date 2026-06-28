@@ -1,6 +1,5 @@
 export const volleyballContent = {
   hero: {
-    eyebrow: "Online Volleyball Betting India",
     title: "Bet Smarter,",
     titleAccent: "Win Bigger",
     tagline: "Every Point Can Change the Game. Every Bet Can Change the Experience.",

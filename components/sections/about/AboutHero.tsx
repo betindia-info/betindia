@@ -17,15 +17,15 @@ export default function AboutHero({
       <div className="relative z-10 mx-auto max-w-5xl text-center">
 
         <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl">
-            {data.eyebrow}
-          </h1>
-
-          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
           India&apos;s Trusted Online Sports Betting &{" "}
           <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
             Casino Platform
           </span>
-        </p>
+        </h1>
+
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
+            {data.description}
+          </p>
 
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

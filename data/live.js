@@ -1,6 +1,5 @@
 export const liveContent = {
   hero: {
-    eyebrow: "LIVE BETTING & IN-PLAY SPORTS BETTING",
     title: "Bet In Real Time",
     description:
       "Experience live cricket betting, football betting, and casino action with real-time odds, instant updates, and exciting in-play betting opportunities. Follow every moment as it happens and place bets based on live match conditions, player performance, and changing game momentum.",

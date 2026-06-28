@@ -1,6 +1,5 @@
 export const responsibleGamingContent = {
   hero: {
-    eyebrow: "Responsible Gaming",
     title: "Responsible Gaming",
     description:
       "BetIndia promotes responsible gaming and encourages all players to enjoy betting and gaming as a form of entertainment. We provide a range of tools, resources, and support to help every player stay in control of their gaming activity at all times.",

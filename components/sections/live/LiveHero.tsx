@@ -23,11 +23,11 @@ export default function LiveHero() {
           {/* Badge */}
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {liveContent.hero.eyebrow}
+            {liveContent.hero.title}
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-300">
-            {liveContent.hero.title}
+            {liveContent.hero.description}
           </p>
 
           {/* CTAs */}

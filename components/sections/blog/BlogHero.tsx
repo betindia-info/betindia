@@ -52,11 +52,11 @@ export default function BlogHero({ content = DEFAULT_CONTENT }: { content?: Page
         </span>
 
         <h1 className="mt-6 text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-            {content.eyebrow}
+            {content.title} {content.highlightedTitle}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
-            {content.title} {content.highlightedTitle}
+            {content.description}
           </p>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg">

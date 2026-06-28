@@ -1,6 +1,5 @@
 export const promotionsContent = {
   hero: {
-    eyebrow: "Unlock More Value with Every Game",
     title: "Online Casino Bonuses, Cashback Offers & VIP Rewards in India",
     description: "Discover exciting bonuses, cashback offers, referral rewards, and VIP benefits designed to enhance your betting and gaming experience. Whether you enjoy live casino games, online slots, Teen Patti, Aviator, or sports betting, BetIndia rewards you every step of the way.",
     imageUrl: "",

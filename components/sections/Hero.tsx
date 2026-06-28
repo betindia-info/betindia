@@ -25,11 +25,11 @@ export default function Hero({content,}: {
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {data.eyebrow}
+            {data.title} {data.highlightedTitle}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
-            {data.title} {data.highlightedTitle}
+            {data.description}
           </p>
 
         

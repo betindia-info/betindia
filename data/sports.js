@@ -1,6 +1,5 @@
 export const sportsContent = {
   hero: {
-    eyebrow: "Live Sports Betting with Competitive Odds & Instant Withdrawals",
     title: "BET ON YOUR",
     highlightedTitle: "FAVOURITE SPORTS",
     description:

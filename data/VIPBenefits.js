@@ -1,6 +1,5 @@
 export const vipBenefitsContent = {
   hero: {
-    eyebrow: "Casino VIP Program in India",
     title: "Unlock Premium Rewards, Exclusive Benefits & VIP Privileges",
     description:
       "Welcome to the BetIndia VIP Program, an exclusive membership designed for players who want more from their gaming experience. Enjoy faster withdrawals, dedicated account management, higher betting limits, personalized rewards, and exclusive VIP promotions. Whether you enjoy Live Casino Games, Online Slots, Teen Patti, Aviator, or Sports Betting, our VIP Membership is built to reward loyalty and elevate every moment of play.",

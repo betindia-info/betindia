@@ -1,6 +1,5 @@
 export const tennisContent = {
   hero: {
-    eyebrow: "Tennis Betting",
     title: "Grand Slams, ATP & WTA",
     description:
       "Bet on the world's biggest tennis tournaments with live odds, in-play markets, and competitive tennis betting lines across Grand Slams, ATP Tour, and WTA Tour events.",

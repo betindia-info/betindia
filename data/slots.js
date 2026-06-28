@@ -1,6 +1,5 @@
 export const slotsContent = {
   hero: {
-    eyebrow: "Online Slot Games",
     title: "Online Slot Games India",
     description:
       "Slot games are among the most popular online casino games, offering exciting gameplay, engaging themes, bonus features, and the opportunity to win large jackpots.",

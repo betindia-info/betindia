@@ -25,11 +25,11 @@ export default function PrivacyHero({ content }: { content?: Partial<typeof DEFA
       <div className="relative z-10 mx-auto max-w-4xl text-center">
 
         <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            {data.eyebrow}
+            {data.title}
           </h1>
 
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-400">
-          {data.title}
+          {data.description}
         </p>
 
         <p className="mt-4 text-xs font-semibold text-slate-600">

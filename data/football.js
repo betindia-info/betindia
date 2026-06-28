@@ -1,6 +1,5 @@
 export const footballContent = {
   hero: {
-    eyebrow: "Football Betting",
     title: "Euro, Premier League & More",
     description: "Access premium football leagues with top odds.",
     imageUrl: "",

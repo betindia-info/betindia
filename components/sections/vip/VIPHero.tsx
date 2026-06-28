@@ -22,10 +22,6 @@ export default function VIPHero({
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
-            {data.eyebrow}
-          </span>
-
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4.5vw,3.75rem)]">
             {data.title.includes("VIP Privileges") ? (
               <>

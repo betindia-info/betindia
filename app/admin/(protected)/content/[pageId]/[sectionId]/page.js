@@ -50,7 +50,9 @@ export default function SectionEditor() {
     return <div className="p-10 text-white">Loading...</div>;
   }
 
-  const keys = Object.keys(form);
+  // Hide retired fields from the editor (e.g. the old hero "eyebrow").
+  const HIDDEN_KEYS = ["eyebrow"];
+  const keys = Object.keys(form).filter((k) => !HIDDEN_KEYS.includes(k));
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 text-white">

@@ -1,6 +1,5 @@
 export const badmintonContent = {
   hero: {
-    eyebrow: "Online Badminton Betting India",
     title: "Bet on Live",
     titleAccent: "Badminton Matches",
     description:

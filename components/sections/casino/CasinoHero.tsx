@@ -46,11 +46,11 @@ export default function CasinoHero({ content = DEFAULT_CONTENT }: { content?: Pa
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
-            {content.eyebrow}
+            {content.title} {content.highlightedTitle}
           </h1>
 
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300">
-            {content.title} {content.highlightedTitle}
+            {content.description}
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
