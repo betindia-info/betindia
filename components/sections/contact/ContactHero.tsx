@@ -25,13 +25,16 @@ export default function ContactHero({
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
 
             <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl">
+            {data.eyebrow}
+          </h1>
+
+          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
               Contact BetIndia{" "}
               <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
                 Customer Support
               </span>
-            </h1>
+            </p>
 
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-300 md:text-lg">{data.description}</p>
 
             <ul className="mt-8 space-y-3">
               {TRUST_POINTS.map((point) => (
