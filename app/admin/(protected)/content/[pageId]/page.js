@@ -17,7 +17,7 @@ function formatLabel(id) {
 
 export default function PageSections() {
   const { pageId } = useParams();
-  const [sections, setSections] = useState<string[]>([]);
+  const [sections, setSections] = useState([]);
 
   useEffect(() => {
     if (pageId) {

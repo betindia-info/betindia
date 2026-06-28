@@ -62,13 +62,14 @@ function buildPageList(firestorePages: Array<{ id: string; name?: string; slug?:
 }
 
 async function loadSectionsForPage(pageId: string): Promise<SectionItem[]> {
-  const configKeys = Object.keys(cmsConfig[pageId] || {});
+  const config = cmsConfig as Record<string, Record<string, unknown[]>>;
+  const configKeys = Object.keys(config[pageId] || {});
   const firestoreSections = await getSections(pageId);
   const firestoreKeys = firestoreSections.map((s) => s.id);
   const allKeys = [...new Set([...configKeys, ...firestoreKeys])].sort();
 
   return allKeys.map((id) => {
-    const fields = cmsConfig[pageId]?.[id];
+    const fields = config[pageId]?.[id];
     const fieldCount = Array.isArray(fields) ? fields.length : 0;
     return {
       id,
