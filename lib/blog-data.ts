@@ -8,7 +8,7 @@ import {
   where,
   limit,
 } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, isFirebaseConfigured } from "./firebase";
 import { iconFromName } from "./blog-icons";
 import type { BlogPost, BlogSection } from "./blog-posts";
 
@@ -72,6 +72,7 @@ function onReadError<T>(fn: string, err: unknown, fallback: T): T {
 
 /** All published posts, ordered for the listing grid. */
 export async function getAllPosts(): Promise<BlogPost[]> {
+  if (!isFirebaseConfigured()) return [];
   try {
     const snap = await getDocs(query(postsCollection(), orderBy("order")));
     return snap.docs
@@ -91,6 +92,7 @@ export async function getAllSlugs(): Promise<string[]> {
 
 /** A single published post by slug, or null (unpublished / missing / error → null). */
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (!isFirebaseConfigured()) return null;
   try {
     const snap = await getDoc(doc(db, "posts", slug));
     if (!snap.exists()) return null;
@@ -111,6 +113,7 @@ export async function getRelatedPosts(slugs: string[]): Promise<BlogPost[]> {
 /** The post flagged `featured` (a single-field equality query — no composite
  *  index needed), falling back to the first post in the listing. */
 export async function getFeaturedPost(): Promise<BlogPost | null> {
+  if (!isFirebaseConfigured()) return null;
   try {
     const snap = await getDocs(
       query(postsCollection(), where("featured", "==", true), limit(1))

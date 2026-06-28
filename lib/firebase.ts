@@ -1,8 +1,8 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
+import { getAnalytics, type Analytics } from "firebase/analytics";
+import { getFirestore, type Firestore } from "firebase/firestore";
+import { getAuth, type Auth } from "firebase/auth";
+import { getStorage, type FirebaseStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,16 +14,147 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-export const app =
-  getApps().length === 0
-    ? initializeApp(firebaseConfig)
-    : getApp();
+/** True when the minimum env vars needed to talk to Firebase are present. */
+export function isFirebaseConfigured(): boolean {
+  const { apiKey, projectId } = firebaseConfig;
+  return Boolean(
+    typeof apiKey === "string" &&
+      apiKey.trim().length > 0 &&
+      typeof projectId === "string" &&
+      projectId.trim().length > 0
+  );
+}
 
-export const analytics =
-  typeof window !== "undefined"
-    ? getAnalytics(app)
-    : null;
+let appInstance: FirebaseApp | null | undefined;
+let dbInstance: Firestore | null | undefined;
+let authInstance: Auth | null | undefined;
+let storageInstance: FirebaseStorage | null | undefined;
 
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export const storage = getStorage(app);
+function getAppInstance(): FirebaseApp | null {
+  if (appInstance !== undefined) return appInstance;
+  if (!isFirebaseConfigured()) {
+    appInstance = null;
+    return appInstance;
+  }
+  try {
+    appInstance = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+  } catch (err) {
+    console.error("Firebase app init failed:", err);
+    appInstance = null;
+  }
+  return appInstance;
+}
+
+function getDbInstance(): Firestore | null {
+  if (dbInstance !== undefined) return dbInstance;
+  const app = getAppInstance();
+  if (!app) {
+    dbInstance = null;
+    return dbInstance;
+  }
+  try {
+    dbInstance = getFirestore(app);
+  } catch (err) {
+    console.error("Firestore init failed:", err);
+    dbInstance = null;
+  }
+  return dbInstance;
+}
+
+function getAuthInstance(): Auth | null {
+  if (authInstance !== undefined) return authInstance;
+  const app = getAppInstance();
+  if (!app) {
+    authInstance = null;
+    return authInstance;
+  }
+  try {
+    authInstance = getAuth(app);
+  } catch (err) {
+    console.error("Firebase Auth init failed:", err);
+    authInstance = null;
+  }
+  return authInstance;
+}
+
+function getStorageInstance(): FirebaseStorage | null {
+  if (storageInstance !== undefined) return storageInstance;
+  const app = getAppInstance();
+  if (!app) {
+    storageInstance = null;
+    return storageInstance;
+  }
+  try {
+    storageInstance = getStorage(app);
+  } catch (err) {
+    console.error("Firebase Storage init failed:", err);
+    storageInstance = null;
+  }
+  return storageInstance;
+}
+
+/** @deprecated Prefer getDb() — kept for existing imports. */
+export const app = getAppInstance();
+
+export function getDb(): Firestore {
+  const instance = getDbInstance();
+  if (!instance) {
+    throw new Error("Firestore is not available — check Firebase env configuration.");
+  }
+  return instance;
+}
+
+export function getFirebaseAuth(): Auth {
+  const instance = getAuthInstance();
+  if (!instance) {
+    throw new Error("Firebase Auth is not available — check Firebase env configuration.");
+  }
+  return instance;
+}
+
+export function getFirebaseStorage(): FirebaseStorage {
+  const instance = getStorageInstance();
+  if (!instance) {
+    throw new Error("Firebase Storage is not available — check Firebase env configuration.");
+  }
+  return instance;
+}
+
+/** Lazy proxy so importing this module never calls getAuth() at load time. */
+export const db = new Proxy({} as Firestore, {
+  get(_target, prop, receiver) {
+    const instance = getDbInstance();
+    if (!instance) return undefined;
+    const value = Reflect.get(instance as object, prop, receiver);
+    return typeof value === "function" ? value.bind(instance) : value;
+  },
+});
+
+/** Lazy proxy — safe to import during static build / sitemap generation. */
+export const auth = new Proxy({} as Auth, {
+  get(_target, prop, receiver) {
+    const instance = getAuthInstance();
+    if (!instance) return undefined;
+    const value = Reflect.get(instance as object, prop, receiver);
+    return typeof value === "function" ? value.bind(instance) : value;
+  },
+});
+
+export const storage = new Proxy({} as FirebaseStorage, {
+  get(_target, prop, receiver) {
+    const instance = getStorageInstance();
+    if (!instance) return undefined;
+    const value = Reflect.get(instance as object, prop, receiver);
+    return typeof value === "function" ? value.bind(instance) : value;
+  },
+});
+
+export const analytics: Analytics | null = (() => {
+  if (typeof window === "undefined") return null;
+  try {
+    const app = getAppInstance();
+    return app ? getAnalytics(app) : null;
+  } catch {
+    return null;
+  }
+})();
