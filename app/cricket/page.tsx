@@ -7,17 +7,20 @@ import LiveCricketMatches from "@/components/sections/LiveCricketMatches";
 import WhyBetOnCricket from "@/components/sections/cricket/WhyBetOnCricket";
 import CricketCTA from "@/components/sections/cricket/CricketCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import cricket, { cricketContent } from "@/data/cricket";
 import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Cricket Betting",
-  description:
-    "Live cricket betting on IPL, Test matches, ODI, and T20. Real-time ball-by-ball odds, competitive betting markets, and instant withdrawals on BetIndia.",
-  path: "/cricket",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "cricket",
+    title: "Cricket Betting",
+    description:
+      "Live cricket betting on IPL, Test matches, ODI, and T20. Real-time ball-by-ball odds, competitive betting markets, and instant withdrawals on BetIndia.",
+    path: "/cricket",
+  });
+}
 
 export const revalidate = 300;
 

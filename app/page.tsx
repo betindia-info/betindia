@@ -19,18 +19,21 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import LiveCricketMatches from "@/components/sections/LiveCricketMatches";
 import LatestArticles from "@/components/sections/LatestArticles";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import { homeContent } from "@/data/home";
 import { CTA_LINKS } from "@/lib/cta-links";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "BetIndia",
-  description:
-    "India's most trusted sports betting and casino platform. Live cricket betting, IPL odds, casino games, Aviator and more. Join now and claim your welcome bonus.",
-  path: "/",
-  absoluteTitle: "BetIndia — India's Premium Sportsbook & Casino",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "home",
+    title: "BetIndia",
+    description:
+      "India's most trusted sports betting and casino platform. Live cricket betting, IPL odds, casino games, Aviator and more. Join now and claim your welcome bonus.",
+    path: "/",
+    absoluteTitle: "BetIndia — India's Premium Sportsbook & Casino",
+  });
+}
 
 export const revalidate = 300;
 

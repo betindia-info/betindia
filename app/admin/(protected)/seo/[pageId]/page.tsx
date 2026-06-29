@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ChevronLeft, Globe, Loader2, Save } from "lucide-react";
 import { getPageMeta, savePageMeta } from "@/lib/cms";
+import { revalidateSeo } from "../actions";
 
 function formatLabel(id: string) {
   return id
@@ -56,6 +57,15 @@ export default function PageSeoEditor() {
       metaTitle: metaTitle.trim(),
       metaDescription: metaDescription.trim(),
     });
+    if (success) {
+      // Refresh the live page so the new meta tags appear immediately
+      // instead of waiting for the ISR revalidate window.
+      try {
+        await revalidateSeo(String(pageId));
+      } catch {
+        // Non-fatal: the page will still refresh on its next revalidate.
+      }
+    }
     setSaving(false);
     if (success) {
       alert("SEO Settings Saved!");

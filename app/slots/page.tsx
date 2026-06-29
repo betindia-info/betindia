@@ -6,16 +6,19 @@ import PopularSlots from "@/components/sections/slots/PopularSlots";
 import JackpotSlots from "@/components/sections/slots/JackpotSlots";
 import SlotsCTA from "@/components/sections/slots/SlotsCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import slots, { slotsContent } from "@/data/slots";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Online Slot Games India",
-  description:
-    "Play classic slots, video slots, progressive jackpot slots, and bonus buy games on BetIndia. 500+ slot games with free spins, bonus features, and mobile-friendly gameplay.",
-  path: "/slots",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "slots",
+    title: "Online Slot Games India",
+    description:
+      "Play classic slots, video slots, progressive jackpot slots, and bonus buy games on BetIndia. 500+ slot games with free spins, bonus features, and mobile-friendly gameplay.",
+    path: "/slots",
+  });
+}
 
 export const revalidate = 300;
 

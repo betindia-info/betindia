@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getPageMeta } from "./cms";
 
 // ─── Site constants ───────────────────────────────────────────────────────────
 
@@ -73,4 +74,52 @@ export function staticPageMetadata({
       images: [SITE_CONFIG.ogImage],
     },
   };
+}
+
+// ─── CMS-aware page metadata ──────────────────────────────────────────────────
+// Same as staticPageMetadata, but first looks up the page's CMS-managed SEO
+// (meta title / description edited in Admin → SEO Settings, stored on the
+// pages/{pageId} document). Any value set there overrides the code default; if
+// the document or field is missing, the static defaults are used. A custom meta
+// title is treated as the exact, full <title> (it bypasses the "%s | BetIndia"
+// template).
+
+export async function pageMetadata({
+  pageId,
+  title,
+  description,
+  path,
+  noIndex = false,
+  absoluteTitle,
+}: {
+  pageId: string;
+  title: string;
+  description: string;
+  path: string;
+  noIndex?: boolean;
+  absoluteTitle?: string;
+}): Promise<Metadata> {
+  let resolvedDescription = description;
+  let resolvedAbsoluteTitle = absoluteTitle;
+
+  try {
+    const meta = await getPageMeta(pageId);
+    const metaTitle =
+      typeof meta?.metaTitle === "string" ? meta.metaTitle.trim() : "";
+    const metaDescription =
+      typeof meta?.metaDescription === "string" ? meta.metaDescription.trim() : "";
+
+    if (metaTitle) resolvedAbsoluteTitle = metaTitle;
+    if (metaDescription) resolvedDescription = metaDescription;
+  } catch {
+    // Fall back to the static defaults on any read error.
+  }
+
+  return staticPageMetadata({
+    title,
+    description: resolvedDescription,
+    path,
+    noIndex,
+    absoluteTitle: resolvedAbsoluteTitle,
+  });
 }

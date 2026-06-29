@@ -7,17 +7,20 @@ import TennisTournaments from "@/components/sections/tennis/TennisTournaments";
 import TennisTips from "@/components/sections/tennis/TennisTips";
 import TennisCTA from "@/components/sections/tennis/TennisCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import tennis, { tennisContent } from "@/data/tennis";
 import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Tennis Betting India | Live Tennis Betting & ATP/WTA Odds | BetIndia",
-  description:
-   "Bet on tennis with live tennis betting, ATP & WTA odds, Grand Slam betting, Wimbledon betting, and real-time tennis betting markets. Enjoy secure gameplay, fast withdrawals, and premium online tennis betting at BetIndia.",
-  path: "/tennis",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "tennis",
+    title: "Tennis Betting India | Live Tennis Betting & ATP/WTA Odds | BetIndia",
+    description:
+     "Bet on tennis with live tennis betting, ATP & WTA odds, Grand Slam betting, Wimbledon betting, and real-time tennis betting markets. Enjoy secure gameplay, fast withdrawals, and premium online tennis betting at BetIndia.",
+    path: "/tennis",
+  });
+}
 
 export const revalidate = 300;
 

@@ -8,18 +8,21 @@ import CookiesSection from "@/components/legal/CookiesSection";
 import SecuritySection from "@/components/legal/SecuritySection";
 import UserRights from "@/components/legal/UserRights";
 import PrivacyContact from "@/components/legal/PrivacyContact";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 import { getPage } from "@/lib/cms";
 import PrivacyPolicy from "@/data/privacy-policy";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Privacy Policy",
-  description:
-    "Learn how BetIndia collects, uses, stores, and protects user information through our Privacy Policy and data protection practices.",
-  path: "/privacy-policy",
-  noIndex: false,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "privacy-policy",
+    title: "Privacy Policy",
+    description:
+      "Learn how BetIndia collects, uses, stores, and protects user information through our Privacy Policy and data protection practices.",
+    path: "/privacy-policy",
+    noIndex: false,
+  });
+}
 
 export const revalidate = 300;
 

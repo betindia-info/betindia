@@ -8,15 +8,18 @@ import WhyLiveCasino from "@/components/sections/live-casino/WhyLiveCasino";
 import FeaturedTables from "@/components/sections/live-casino/FeaturedTables";
 import LiveCasinoCTA from "@/components/sections/live-casino/LiveCasinoCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { Users, Video, Zap, ShieldCheck } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Live Casino",
-  description:
-    "Play Live Roulette, Blackjack, Baccarat, Teen Patti Live, Andar Bahar Live, Aviator, Crazy Time, and more on BetIndia's premium live casino platform.",
-  path: "/live-casino",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "live-casino",
+    title: "Live Casino",
+    description:
+      "Play Live Roulette, Blackjack, Baccarat, Teen Patti Live, Andar Bahar Live, Aviator, Crazy Time, and more on BetIndia's premium live casino platform.",
+    path: "/live-casino",
+  });
+}
 
 export default function LiveCasinoPage() {
   const TRUST = [

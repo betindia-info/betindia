@@ -5,7 +5,26 @@ import { Mail, CheckCircle2, Loader2 } from "lucide-react";
 
 type Status = "idle" | "submitting" | "success";
 
-export default function NewsletterCTA() {
+type NewsletterContent = {
+  titleLead?: string;
+  titleAccent?: string;
+  description?: string;
+  buttonText?: string;
+};
+
+const DEFAULT_CONTENT: Required<NewsletterContent> = {
+  titleLead: "Never Miss",
+  titleAccent: "An Update",
+  description:
+    "Get the latest betting guides, casino tips, promotions, and platform updates delivered directly to your inbox.",
+  buttonText: "Subscribe",
+};
+
+export default function NewsletterCTA({
+  content = DEFAULT_CONTENT,
+}: {
+  content?: NewsletterContent;
+}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
@@ -52,13 +71,13 @@ export default function NewsletterCTA() {
                 </div>
 
                 <h2 className="relative text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl">
-                  Never Miss{" "}
+                  {content.titleLead ?? DEFAULT_CONTENT.titleLead}{" "}
                   <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF8A00] to-[#138808] bg-clip-text text-transparent">
-                    An Update
+                    {content.titleAccent ?? DEFAULT_CONTENT.titleAccent}
                   </span>
                 </h2>
                 <p className="relative mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-400 md:text-base">
-                  Get the latest betting guides, casino tips, promotions, and platform updates delivered directly to your inbox.
+                  {content.description ?? DEFAULT_CONTENT.description}
                 </p>
 
                 {/* Form */}
@@ -92,7 +111,7 @@ export default function NewsletterCTA() {
                         Subscribing…
                       </>
                     ) : (
-                      "Subscribe"
+                      content.buttonText ?? DEFAULT_CONTENT.buttonText
                     )}
                   </button>
                 </form>

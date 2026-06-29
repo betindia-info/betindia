@@ -10,17 +10,20 @@ import AviatorSection from "@/components/sections/casino/AviatorSection";
 import FeaturedGames from "@/components/sections/casino/FeaturedGames";
 import CasinoCTA from "@/components/sections/casino/CasinoCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import casino, { casinoContent } from "@/data/casino";
 import { Check } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Online Casino",
-  description:
-    "Play premium casino games at BetIndia. Live dealers, slots, Teen Patti, Aviator, and 500+ games with fast withdrawals.",
-  path: "/casino",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "casino",
+    title: "Online Casino",
+    description:
+      "Play premium casino games at BetIndia. Live dealers, slots, Teen Patti, Aviator, and 500+ games with fast withdrawals.",
+    path: "/casino",
+  });
+}
 
 export const revalidate = 300;
 

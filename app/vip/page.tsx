@@ -8,18 +8,21 @@ import VIPLevels from "@/components/sections/vip/VIPLevels";
 import VIPManager from "@/components/sections/vip/VIPManager";
 import VIPCTA from "@/components/sections/vip/VIPCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import VIPBenefitsData, { vipBenefitsContent } from "@/data/VIPBenefits";
 import { Gift, TrendingUp, Users, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "VIP Program India",
-  absoluteTitle: "VIP Program India | Casino VIP Membership, Rewards & Exclusive Benefits | BetIndia",
-  description:
-    "Join the BetIndia VIP Program and enjoy exclusive VIP rewards, faster withdrawals, dedicated account managers, higher betting limits, personalized promotions, and premium gaming benefits for loyal players.",
-  path: "/vip",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "vip-benefits",
+    title: "VIP Program India",
+    absoluteTitle: "VIP Program India | Casino VIP Membership, Rewards & Exclusive Benefits | BetIndia",
+    description:
+      "Join the BetIndia VIP Program and enjoy exclusive VIP rewards, faster withdrawals, dedicated account managers, higher betting limits, personalized promotions, and premium gaming benefits for loyal players.",
+    path: "/vip",
+  });
+}
 
 export const revalidate = 300;
 

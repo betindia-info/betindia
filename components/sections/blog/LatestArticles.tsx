@@ -47,7 +47,25 @@ function ArticlesGrid({ articles }: { articles: Article[] }) {
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 
-export default function LatestArticles({ articles }: { articles: Article[] }) {
+type HeaderContent = {
+  titleLead?: string;
+  titleAccent?: string;
+  description?: string;
+};
+
+const DEFAULT_HEADER: Required<HeaderContent> = {
+  titleLead: "Latest",
+  titleAccent: "Articles",
+  description: "Discover our newest guides and insights.",
+};
+
+export default function LatestArticles({
+  articles,
+  content = DEFAULT_HEADER,
+}: {
+  articles: Article[];
+  content?: HeaderContent;
+}) {
   return (
     <section className="relative overflow-hidden bg-[#050B18] px-4 pb-16 sm:px-6 lg:px-8">
       <div
@@ -59,13 +77,13 @@ export default function LatestArticles({ articles }: { articles: Article[] }) {
         {/* Section header */}
         <div className="mb-10">
           <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl">
-            Latest{" "}
+            {content.titleLead ?? DEFAULT_HEADER.titleLead}{" "}
             <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
-              Articles
+              {content.titleAccent ?? DEFAULT_HEADER.titleAccent}
             </span>
           </h2>
           <p className="mt-2 text-sm text-slate-400">
-            Discover our newest guides and insights.
+            {content.description ?? DEFAULT_HEADER.description}
           </p>
         </div>
 

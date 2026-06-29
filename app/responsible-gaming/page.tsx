@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/legal/LegalLayout";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import ResponsibleGaming, { responsibleGamingContent } from "@/data/responsible-gaming";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Responsible Gaming",
-  description:
-    "BetIndia's commitment to responsible gaming. Understand safe betting practices, warning signs, player protection tools, and how to seek support.",
-  path: "/responsible-gaming",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "responsible-gaming",
+    title: "Responsible Gaming",
+    description:
+      "BetIndia's commitment to responsible gaming. Understand safe betting practices, warning signs, player protection tools, and how to seek support.",
+    path: "/responsible-gaming",
+  });
+}
 
 export const revalidate = 300;
 

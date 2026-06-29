@@ -7,16 +7,19 @@ import WhatWeOffer from "@/components/sections/about/WhatWeOffer";
 import WhyChooseAbout from "@/components/sections/about/WhyChooseAbout";
 import AboutCTA from "@/components/sections/about/AboutCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import AboutUs, { aboutUsContent } from "@/data/AboutUs";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "About BetIndia",
-  description:
-    "Learn about BetIndia — India's trusted online sports betting and casino platform. Live sports, casino games, secure payments, and premium gaming for players across India.",
-  path: "/about",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "about-us",
+    title: "About BetIndia",
+    description:
+      "Learn about BetIndia — India's trusted online sports betting and casino platform. Live sports, casino games, secure payments, and premium gaming for players across India.",
+    path: "/about",
+  });
+}
 
 export const revalidate = 300;
 

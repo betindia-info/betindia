@@ -87,7 +87,23 @@ function SearchInner() {
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 
-export default function BlogSearch() {
+type HeaderContent = {
+  titleLead?: string;
+  titleAccent?: string;
+  description?: string;
+};
+
+const DEFAULT_HEADER: Required<HeaderContent> = {
+  titleLead: "Explore",
+  titleAccent: "Articles",
+  description: "Filter by category or search by keyword.",
+};
+
+export default function BlogSearch({
+  content = DEFAULT_HEADER,
+}: {
+  content?: HeaderContent;
+}) {
   return (
     <section className="relative overflow-hidden bg-[#050B18] px-4 py-10 sm:px-6 lg:px-8">
       <div
@@ -99,12 +115,12 @@ export default function BlogSearch() {
         {/* Header */}
         <div className="mb-7">
           <h2 className="text-lg font-extrabold text-white md:text-xl">
-            Explore{" "}
+            {content.titleLead ?? DEFAULT_HEADER.titleLead}{" "}
             <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
-              Articles
+              {content.titleAccent ?? DEFAULT_HEADER.titleAccent}
             </span>
           </h2>
-          <p className="mt-1 text-sm text-slate-500">Filter by category or search by keyword.</p>
+          <p className="mt-1 text-sm text-slate-500">{content.description ?? DEFAULT_HEADER.description}</p>
         </div>
 
         <Suspense

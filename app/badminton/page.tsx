@@ -11,17 +11,20 @@ import BadmintonPremiumFeatures from "@/components/sections/badminton/BadmintonP
 import BadmintonTips from "@/components/sections/badminton/BadmintonTips";
 import BadmintonCTA from "@/components/sections/badminton/BadmintonCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import { badmintonContent } from "@/data/badminton";
 import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Badminton Betting India",
-  description:
-    "Online badminton betting on BWF tournaments, India Open, All England, and live in-play markets. Competitive odds and fast withdrawals on BetIndia.",
-  path: "/badminton",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "badminton",
+    title: "Badminton Betting India",
+    description:
+      "Online badminton betting on BWF tournaments, India Open, All England, and live in-play markets. Competitive odds and fast withdrawals on BetIndia.",
+    path: "/badminton",
+  });
+}
 
 export const revalidate = 300;
 

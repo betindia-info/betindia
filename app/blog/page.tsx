@@ -8,35 +8,35 @@ import LatestArticles from "@/components/sections/blog/LatestArticles";
 import NewsletterCTA from "@/components/sections/blog/NewsletterCTA";
 import type { Article } from "@/components/sections/LatestArticles";
 import { getAllPosts, getFeaturedPost } from "@/lib/blog-data";
-import { staticPageMetadata } from "@/lib/seo";
-import { getPageContent } from "@/lib/page-content";
+import { pageMetadata } from "@/lib/seo";
+import { getPage } from "@/lib/cms";
+import { blogContent } from "@/data/blog";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Blog",
-  description:
-    "Expert betting guides, IPL cricket tips, casino strategies, Aviator insights, and the latest gaming trends from the BetIndia team.",
-  path: "/blog",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "blog",
+    title: "Blog",
+    description:
+      "Expert betting guides, IPL cricket tips, casino strategies, Aviator insights, and the latest gaming trends from the BetIndia team.",
+    path: "/blog",
+  });
+}
 
 // Posts come from Firestore; revalidate the listing periodically.
 export const revalidate = 300;
 
 export default async function BlogPage() {
-  const [posts, featured, heroContent] = await Promise.all([
+  const [posts, featured, page] = await Promise.all([
     getAllPosts(),
     getFeaturedPost(),
-    getPageContent("blog", {
-      path: "/blog",
-      name: "Blog",
-      eyebrow: "BetIndia Blog",
-      title: "Betting Guides, Casino Tips",
-      highlightedTitle: "& Winning Strategies",
-      description:
-        "Stay informed with expert insights, sports betting guides, casino strategies, Aviator tips, and the latest gaming trends from the BetIndia team.",
-      imageUrl: "",
-      imageAlt: "BetIndia blog",
-    }),
+    getPage("blog"),
   ]);
+
+  // CMS content with fallback to code defaults (Firestore may be empty).
+  const heroContent = page.hero || blogContent.hero;
+  const featuredPosts = { ...blogContent.featuredPosts, ...(page.featuredPosts ?? {}) };
+  const categories = { ...blogContent.categories, ...(page.categories ?? {}) };
+  const newsletter = { ...blogContent.newsletter, ...(page.newsletter ?? {}) };
 
   const articles: Article[] = posts.map((p) => ({
     slug: p.slug,
@@ -53,10 +53,10 @@ export default async function BlogPage() {
       <Header />
       <main className="min-h-screen bg-[#050B18] text-white">
         <BlogHero content={heroContent} />
-        <BlogSearch />
+        <BlogSearch content={categories} />
         {featured && <FeaturedArticle post={featured} />}
-        <LatestArticles articles={articles} />
-        <NewsletterCTA />
+        <LatestArticles articles={articles} content={featuredPosts} />
+        <NewsletterCTA content={newsletter} />
       </main>
       <Footer />
     </>

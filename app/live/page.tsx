@@ -11,16 +11,19 @@ import WhyChooseLiveBetting from "@/components/sections/live/WhyChooseLiveBettin
 import LiveMarketsAvailable from "@/components/sections/live/LiveMarketsAvailable";
 import LiveCTA from "@/components/sections/live/LiveCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { liveContent } from "@/data/live";
 import { ActivityIcon, BarChart3, Wallet, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Live Betting & In-Play Sports Betting",
-  description:
-    "Bet in real time on live cricket, football, tennis and more. Real-time odds, instant cashout, and exciting in-play betting opportunities.",
-  path: "/live",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "live",
+    title: "Live Betting & In-Play Sports Betting",
+    description:
+      "Bet in real time on live cricket, football, tennis and more. Real-time odds, instant cashout, and exciting in-play betting opportunities.",
+    path: "/live",
+  });
+}
 
 const ACCENT_COLORS = ["#FF6B00", "#138808"] as const;
 

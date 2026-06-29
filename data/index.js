@@ -16,6 +16,7 @@ import VIPBenefits from "./VIPBenefits";
 import live from "./live";
 import badminton from "./badminton";
 import volleyball from "./volleyball";
+import blog from "./blog";
 
 /**
  * Registry of all CMS page defaults.
@@ -50,4 +51,5 @@ export const CMS_DATA = [
   live,
   badminton,
   volleyball,
+  blog,
 ];

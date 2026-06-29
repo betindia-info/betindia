@@ -7,17 +7,20 @@ import PopularMarkets from "@/components/sections/football/PopularMarkets";
 import LiveFootballBetting from "@/components/sections/football/LiveFootballBetting";
 import FootballCTA from "@/components/sections/football/FootballCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import football, { footballContent } from "@/data/football";
 import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Football Betting",
-  description:
-    "Bet on Premier League, La Liga, Champions League, Serie A, Bundesliga and more with BetIndia's premium football betting experience.",
-  path: "/football",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "football",
+    title: "Football Betting",
+    description:
+      "Bet on Premier League, La Liga, Champions League, Serie A, Bundesliga and more with BetIndia's premium football betting experience.",
+    path: "/football",
+  });
+}
 
 export const revalidate = 300;
 

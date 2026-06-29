@@ -6,17 +6,20 @@ import PopularTableGames from "@/components/sections/table-games/PopularTableGam
 import GameRules from "@/components/sections/table-games/GameRules";
 import WhyPlayTableGames from "@/components/sections/table-games/WhyPlayTableGames";
 import TableGamesCTA from "@/components/sections/table-games/TableGamesCTA";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 import { getPage } from "@/lib/cms";
 import TableGames from "@/data/tablegames";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Table Games",
-  description:
-    "Play premium table games including Blackjack, Roulette, Baccarat, Teen Patti, and Andar Bahar on BetIndia. Live dealers, fast gameplay, and classic casino excitement.",
-  path: "/table-games",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "table-games",
+    title: "Table Games",
+    description:
+      "Play premium table games including Blackjack, Roulette, Baccarat, Teen Patti, and Andar Bahar on BetIndia. Live dealers, fast gameplay, and classic casino excitement.",
+    path: "/table-games",
+  });
+}
 
 export const revalidate = 300;
 

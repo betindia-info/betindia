@@ -6,16 +6,19 @@ import ContactForm from "@/components/sections/contact/ContactForm";
 import CustomerSupportServices from "@/components/sections/contact/CustomerSupportServices";
 import ContactCTA from "@/components/sections/contact/ContactCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import ContactUs, { contactUsContent } from "@/data/ContactUs";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Contact BetIndia Customer Support",
-  description:
-    "Contact BetIndia customer support 24/7 for help with accounts, sports betting, casino games, deposits, withdrawals, and promotions.",
-  path: "/contact",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "contact-us",
+    title: "Contact BetIndia Customer Support",
+    description:
+      "Contact BetIndia customer support 24/7 for help with accounts, sports betting, casino games, deposits, withdrawals, and promotions.",
+    path: "/contact",
+  });
+}
 
 export const revalidate = 300;
 

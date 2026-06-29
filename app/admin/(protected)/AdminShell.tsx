@@ -19,12 +19,14 @@ import {
   ChevronRight,
   Globe,
   Image,
+  Newspaper,
 } from "lucide-react";
 import { useState } from "react";
 import { auth } from "@/lib/firebase";
 
 const NAV = [
   { label: "Content",      href: "/admin/content",       icon: FileText        },
+  { label: "Blog",         href: "/admin/blog",          icon: Newspaper       },
   { label: "SEO Settings",  href: "/admin/seo",           icon: Globe           },
   { label: "Page Images",   href: "/admin/images",        icon: Image           },
 ] as const;
@@ -141,6 +143,7 @@ export default function AdminShell({
 
   const getActiveBase = () => {
     if (pathname.startsWith("/admin/content")) return "/admin/content";
+    if (pathname.startsWith("/admin/blog")) return "/admin/blog";
     if (pathname.startsWith("/admin/seo")) return "/admin/seo";
     if (pathname.startsWith("/admin/images")) return "/admin/images";
     return "";

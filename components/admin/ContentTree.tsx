@@ -58,6 +58,9 @@ function buildPageList(firestorePages: Array<{ id: string; name?: string; slug?:
     }
   }
 
+  // Blog is managed in its own dedicated admin section (/admin/blog).
+  map.delete("blog");
+
   return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
 }
 

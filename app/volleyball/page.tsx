@@ -12,17 +12,20 @@ import VolleyballPremiumFeatures from "@/components/sections/volleyball/Volleyba
 import VolleyballTips from "@/components/sections/volleyball/VolleyballTips";
 import VolleyballCTA from "@/components/sections/volleyball/VolleyballCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import { volleyballContent } from "@/data/volleyball";
 import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Volleyball Betting India",
-  description:
-    "Online volleyball betting on VNL, FIVB World Championships, Olympics, and live in-play markets. Competitive odds and fast withdrawals on BetIndia.",
-  path: "/volleyball",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "volleyball",
+    title: "Volleyball Betting India",
+    description:
+      "Online volleyball betting on VNL, FIVB World Championships, Olympics, and live in-play markets. Competitive odds and fast withdrawals on BetIndia.",
+    path: "/volleyball",
+  });
+}
 
 export const revalidate = 300;
 

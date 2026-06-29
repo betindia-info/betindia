@@ -7,17 +7,20 @@ import PopularSports from "@/components/sections/sports/PopularSports";
 import BettingMarkets from "@/components/sections/sports/BettingMarkets";
 import SportsCTA from "@/components/sections/sports/SportsCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import sports, { sportsContent } from "@/data/sports";
 import { Activity, ShieldCheck, TrendingUp, ZapIcon } from "lucide-react";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Live Cricket Betting & Sports Betting Markets India | BetIndia ",
-  description:
-    "Enjoy live cricket betting and sports betting on football, tennis, kabaddi, and more. Get competitive odds, live markets, secure payments, and fast withdrawals at BetIndia.",
-  path: "/sports",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "sports",
+    title: "Live Cricket Betting & Sports Betting Markets India | BetIndia ",
+    description:
+      "Enjoy live cricket betting and sports betting on football, tennis, kabaddi, and more. Get competitive odds, live markets, secure payments, and fast withdrawals at BetIndia.",
+    path: "/sports",
+  });
+}
 
 export const revalidate = 300;
 

@@ -7,16 +7,19 @@ import FeaturedPromotions from "@/components/sections/promotions/FeaturedPromoti
 import WhyJoinBetIndia from "@/components/sections/promotions/WhyJoinBetIndia";
 import PromotionsCTA from "@/components/sections/promotions/PromotionsCTA";
 import FAQ from "@/components/sections/FAQ";
-import { staticPageMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import Promotions, { promotionsContent } from "@/data/promotions";
 
-export const metadata: Metadata = staticPageMetadata({
-  title: "Promotions & Bonuses",
-  description:
-    "Unlock exclusive bonuses, cashback offers, VIP rewards and referral benefits at BetIndia. India's most rewarding sportsbook.",
-  path: "/promotions",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return pageMetadata({
+    pageId: "promotions",
+    title: "Promotions & Bonuses",
+    description:
+      "Unlock exclusive bonuses, cashback offers, VIP rewards and referral benefits at BetIndia. India's most rewarding sportsbook.",
+    path: "/promotions",
+  });
+}
 
 export const revalidate = 300;
 
