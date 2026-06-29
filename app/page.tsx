@@ -60,15 +60,13 @@ export default async function Home() {
       <main>
         {/* 1. Hero */}
         <Hero content={page.hero || homeContent.hero} />
-<section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8">
-          <div className="relative z-10 mx-auto max-w-5xl">
-            <div className="text-center mb-6">
-              
-              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
-            </div>
-            <p className="text-sm sm:text-base leading-relaxed text-slate-300 text-center ">
-           Welcome to BetIndia, a trusted online casino in India offering Live Blackjack, Live Roulette, Live Baccarat, Online Slots, Teen Patti, Aviator, and premium casino entertainment. Enjoy secure gameplay, fast withdrawals, professional live dealers, and an immersive gaming experience designed for players across India.
-Whether you're looking for an online betting ID or immersive casino entertainment, BetIndia offers everything in one platform.
+        <section className="relative overflow-hidden bg-[#050B18]">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+              Welcome to BetIndia, India's trusted destination for online casino games, live sports betting, and cricket betting IDs. Whether you're looking to enjoy Live Blackjack, Roulette, Baccarat, Online Slots, Teen Patti, Aviator, or place bets on your favorite sports, BetIndia delivers a secure and premium gaming experience.
+            </p>
+            <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-300">
+              With fast withdrawals, competitive odds, secure payments, and 24/7 support, BetIndia provides everything you need in one powerful platform.
             </p>
           </div>
         </section>
@@ -76,16 +74,14 @@ Whether you're looking for an online betting ID or immersive casino entertainmen
         {/* Trust Bar (Optional dashboard stat indicator) */}
         <TrustBar content={page.trustBar || homeContent.trustBar} />
 
-        {/* 2. About BetIndia Section (Centered Title & Centered Text) */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8">
-          <div className="relative z-10 mx-auto max-w-5xl">
+        <section className="relative overflow-hidden bg-[#050B18]">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl text-center">
                 {seo.aboutTitle}
               </h2>
-              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
             </div>
-            <p className="mx-auto text-sm sm:text-base leading-relaxed text-slate-300 text-center ">
+            <p className="mx-auto text-sm sm:text-base leading-relaxed text-slate-300">
               {seo.aboutText}
             </p>
           </div>
@@ -262,39 +258,34 @@ Whether you're looking for an online betting ID or immersive casino entertainmen
         </section>
 
         {/* Live Cricket Matches widget */}
-        <LiveCricketMatches />
+        {/* <LiveCricketMatches /> */}
 
-        {/* 8. Get Your Cricket Betting ID in India Section (Centered Title & Centered Text) */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-          <div className="relative z-10 mx-auto max-w-5xl">
+        <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl text-center">
                 {seo.cricketIdTitle}
               </h2>
-              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
             </div>
-            <p className="text-sm sm:text-base leading-relaxed text-slate-300 text-center">
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300">
               {seo.cricketIdText}
             </p>
           </div>
         </section>
 
         {/* 9. SEO Text Blocks (Editorial Split Stacks) */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-          <div className="relative z-10 mx-auto max-w-7xl space-y-16">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-              <div className="lg:col-span-1">
-                <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{seo.trustedProviderTitle}</h2>
-                <div className="mt-4 h-1 w-16 bg-[#138808] rounded-full" />
-              </div>
-              <div className="lg:col-span-2 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.trustedProviderText}</div>
+        <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 space-y-16">
+            {/* Trusted Provider */}
+            <div>
+              <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl text-center">{seo.trustedProviderTitle}</h2>
+              <p className="mt-5 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.trustedProviderText}</p>
             </div>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 border-t border-white/[0.06] pt-12">
-              <div className="lg:col-span-1">
-                <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{seo.sportsbookPlatformTitle}</h2>
-                <div className="mt-4 h-1 w-16 bg-[#FF6B00] rounded-full" />
-              </div>
-              <div className="lg:col-span-2 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.sportsbookPlatformText}</div>
+
+            {/* Sportsbook Platform */}
+            <div className="border-t border-white/[0.06] pt-12">
+              <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl text-center">{seo.sportsbookPlatformTitle}</h2>
+              <p className="mt-5 text-slate-400 text-sm leading-relaxed whitespace-pre-line">{seo.sportsbookPlatformText}</p>
             </div>
           </div>
         </section>

@@ -104,7 +104,7 @@ export default function PopularSlots() {
               Games
             </span>
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-slate-400 md:text-base">
+          <p className="mx-auto mt-4 max-w-6xl text-sm leading-relaxed text-slate-400 md:text-base">
             {section.intro}
           </p>
           <p className="mx-auto mt-4 text-sm font-semibold text-slate-300 md:text-base">

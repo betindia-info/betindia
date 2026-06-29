@@ -10,6 +10,7 @@ import FAQ from "@/components/sections/FAQ";
 import { staticPageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import football, { footballContent } from "@/data/football";
+import { Activity, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = staticPageMetadata({
   title: "Football Betting",
@@ -30,9 +31,9 @@ function CenteredSeoSection({
   accent?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+    <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl text-center">
           {title.includes("BetIndia") ? (
             <>
               Why Football Fans Choose{" "}
@@ -51,11 +52,7 @@ function CenteredSeoSection({
             title
           )}
         </h2>
-        <div
-          className="mx-auto mt-4 h-1 w-16 rounded-full"
-          style={{ background: `linear-gradient(to right, ${accent}, #FF6B00)` }}
-        />
-        <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-slate-300 whitespace-pre-line sm:text-base">
+        <p className="mt-6 text-sm leading-relaxed text-slate-300 whitespace-pre-line sm:text-base">
           {text}
         </p>
       </div>
@@ -68,11 +65,36 @@ export default async function FootballPage() {
   const heroContent = page.hero || footballContent.hero;
   const seoBlocks = { ...footballContent.seoBlocks, ...(page.seoBlocks ?? {}) };
 
+  const TRUST = [
+    { icon: Activity,    text: "Live Football Odds"    },
+    { icon: Zap,         text: "In-Play Betting"       },
+    { icon: BarChart3,   text: "Real-Time Match Stats" },
+    { icon: ShieldCheck, text: "Fast Withdrawals"      },
+  ] as const;
+
   return (
     <>
       <Header />
       <main>
         <FootballHero content={heroContent} />
+
+        <section className="relative overflow-hidden bg-[#050B18]">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <ul className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4">
+              {TRUST.map(({ icon: Icon, text }) => (
+                <li
+                  key={text}
+                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#138808]/30 bg-[#138808]/10 text-[#138808]">
+                    <Icon size={14} strokeWidth={2} />
+                  </span>
+                  <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         <CenteredSeoSection
           title={seoBlocks.footballBettingTitle}

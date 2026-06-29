@@ -5,21 +5,23 @@ export default function LiveTennisMarkets() {
 
   return (
     <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-24 lg:px-8 border-t border-white/[0.04]">
-      <div className="relative z-10 mx-auto max-w-5xl">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="mb-10 ">
+          <h2 className="text-2xl text-center font-extrabold text-white md:text-3xl lg:text-4xl">
             Live Tennis{" "}
             <span className="bg-gradient-to-r from-[#FF6B00] to-[#eab308] bg-clip-text text-transparent">
               Betting
             </span>
           </h2>
           <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#eab308]" />
-          <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-slate-400 sm:text-base">
+          <p className="mx-auto mt-6  text-sm leading-relaxed text-slate-400 sm:text-base">
             {data.liveTennisBetting.text}
           </p>
-          <p className="mx-auto mt-6 text-sm font-semibold text-slate-300 sm:text-base">
-            {data.liveTennisBetting.marketsLabel}
-          </p>
+          {((data.liveTennisBetting as any).marketsLabel || "").trim() && (
+            <p className="mx-auto mt-6 text-sm font-semibold text-slate-300 sm:text-base whitespace-pre-line">
+              {(data.liveTennisBetting as any).marketsLabel}
+            </p>
+          )}
         </div>
 
         <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">

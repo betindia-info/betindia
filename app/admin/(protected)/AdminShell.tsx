@@ -17,12 +17,16 @@ import {
   X,
   Bell,
   ChevronRight,
+  Globe,
+  Image,
 } from "lucide-react";
 import { useState } from "react";
 import { auth } from "@/lib/firebase";
 
 const NAV = [
-  { label: "Content",     href: "/admin/content",       icon: FileText        },
+  { label: "Content",      href: "/admin/content",       icon: FileText        },
+  { label: "SEO Settings",  href: "/admin/seo",           icon: Globe           },
+  { label: "Page Images",   href: "/admin/images",        icon: Image           },
 ] as const;
 
 const ALERTS = [
@@ -135,9 +139,17 @@ export default function AdminShell({
     (n) => pathname === n.href || pathname.startsWith(n.href + "/")
   );
 
-  const contentTrail = pathname.startsWith("/admin/content")
+  const getActiveBase = () => {
+    if (pathname.startsWith("/admin/content")) return "/admin/content";
+    if (pathname.startsWith("/admin/seo")) return "/admin/seo";
+    if (pathname.startsWith("/admin/images")) return "/admin/images";
+    return "";
+  };
+
+  const activeBase = getActiveBase();
+  const contentTrail = activeBase
     ? pathname
-        .replace("/admin/content", "")
+        .replace(activeBase, "")
         .split("/")
         .filter(Boolean)
     : [];
@@ -212,7 +224,7 @@ export default function AdminShell({
                   <span className="truncate font-semibold text-[#FF6B00]">{formatTrailLabel(segment)}</span>
                 ) : (
                   <Link
-                    href={`/admin/content/${contentTrail.slice(0, i + 1).join("/")}`}
+                    href={`${activeBase}/${contentTrail.slice(0, i + 1).join("/")}`}
                     className="truncate font-semibold text-slate-300 hover:text-white"
                   >
                     {formatTrailLabel(segment)}
@@ -221,6 +233,7 @@ export default function AdminShell({
               </span>
             ))}
           </div>
+
 
           <div className="ml-auto flex items-center gap-3">
             {/* Live indicator */}

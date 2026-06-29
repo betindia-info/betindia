@@ -178,9 +178,7 @@ export default function FAQ({
             )}
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base">
-            {data.subtitle}
-          </p>
+          
         </div>
 
         {/* Accordion — centered, max 900px */}

@@ -70,17 +70,7 @@ export default function CasinoHero({ content = DEFAULT_CONTENT }: { content?: Pa
           </div>
 
           {/* Trust points */}
-          <ul className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
-            {TRUST.map((t) => (
-              <li
-                key={t}
-                className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-semibold text-slate-300 backdrop-blur-md"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#138808]" />
-                {t}
-              </li>
-            ))}
-          </ul>
+         
         </div>
 
         {/* RIGHT â€” Casino Games Preview */}

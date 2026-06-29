@@ -121,7 +121,7 @@ export default function VIPLevels() {
           })}
         </div>
 
-        <p className="mt-8 text-center text-xs text-slate-500">{data.note}</p>
+        <p className="mt-8 text-xs text-slate-500">{data.note}</p>
       </div>
     </section>
   );

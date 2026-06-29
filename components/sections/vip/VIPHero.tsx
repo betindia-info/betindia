@@ -3,7 +3,7 @@ import { Zap, Users, TrendingUp, Gift } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { vipBenefitsContent } from "@/data/VIPBenefits";
 
-const HIGHLIGHT_ICONS = [Gift, Users, TrendingUp, Zap] as const;
+
 
 export default function VIPHero({
   content,
@@ -53,22 +53,7 @@ export default function VIPHero({
             </a>
           </div>
 
-          <ul className="mt-9 grid w-full grid-cols-2 gap-3">
-            {highlights.map((text, i) => {
-              const Icon = HIGHLIGHT_ICONS[i] ?? Gift;
-              return (
-                <li
-                  key={text}
-                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
-                >
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-                    <Icon size={14} strokeWidth={2} />
-                  </span>
-                  <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
-                </li>
-              );
-            })}
-          </ul>
+         
         </div>
 
         <div className="order-1 lg:order-2">

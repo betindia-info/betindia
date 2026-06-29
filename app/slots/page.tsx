@@ -21,9 +21,9 @@ export const revalidate = 300;
 
 function CenteredSeoSection({ title, text }: { title: string; text: string }) {
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+    <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl text-center">
           {title.includes("BetIndia") ? (
             <>
               Why Players Choose{" "}
@@ -42,8 +42,7 @@ function CenteredSeoSection({ title, text }: { title: string; text: string }) {
             title
           )}
         </h2>
-        <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#138808]" />
-        <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-slate-300 whitespace-pre-line sm:text-base">
+        <p className="mt-6 text-sm leading-relaxed text-slate-300 whitespace-pre-line sm:text-base">
           {text}
         </p>
       </div>

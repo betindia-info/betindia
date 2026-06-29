@@ -9,24 +9,25 @@ export default function BadmintonTournaments() {
       className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-24 lg:px-8 border-t border-white/[0.04]"
     >
       <div className="relative z-10 mx-auto max-w-5xl">
-        <div className="text-center">
+        <div className="text-center mb-6">
           <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
             Popular Badminton Tournaments{" "}
             <span className="bg-gradient-to-r from-[#FF6B00] to-[#138808] bg-clip-text text-transparent">
               Available for Betting
             </span>
           </h2>
-          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#138808]" />
-          <p className="mx-auto mt-6 max-w-3xl whitespace-pre-line text-sm leading-relaxed text-slate-400 sm:text-base">
-            {data.intro}
-          </p>
         </div>
+        <p className="mt-6 whitespace-pre-line text-sm leading-relaxed text-slate-400 sm:text-base">
+          {data.intro}
+        </p>
+      </div>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-sm font-semibold text-slate-300 sm:text-base">
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <p className="mt-10 text-sm font-semibold text-slate-300 sm:text-base">
           {data.listLabel}
         </p>
 
-        <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {data.list.map((tournament) => (
             <li
               key={tournament}
@@ -38,7 +39,7 @@ export default function BadmintonTournaments() {
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-slate-400 sm:text-base">
+        <p className="mt-10 text-sm leading-relaxed text-slate-400 sm:text-base">
           {data.closing}
         </p>
       </div>

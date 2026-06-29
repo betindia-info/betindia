@@ -150,100 +150,26 @@ export default function LiveEventsPreview() {
   }, [load]);
 
   return (
-    <section id="live-events" className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+    <section id="live-events" className="relative overflow-hidden bg-[#050B18] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/25 bg-[#FF6B00]/8 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
-            </span>
-            Live Right Now
-          </span>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+            
+          <h2 className="mt-4 text-2xl text-center font-extrabold tracking-tight text-white md:text-3xl">
             Featured{" "}
             <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF8A00] to-[#FF6B00] bg-clip-text text-transparent">
               Live Events
             </span>
           </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-400 sm:text-base">
+          <p className="mt-4  text-sm leading-relaxed text-slate-400 sm:text-base">
             {liveContent.featuredEvents.intro}
           </p>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-400 sm:text-base">
+          <p className="mt-3  text-sm leading-relaxed text-slate-400 sm:text-base">
             {liveContent.featuredEvents.followText}
           </p>
         </div>
-
-        <div className="mb-10 flex flex-col items-start justify-end gap-4 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-3 sm:ml-auto">
-            {lastUpdated && !loading && (
-              <span className="text-[11px] text-slate-600">
-                Updated {lastUpdated.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}
-              </span>
-            )}
-            <button
-              onClick={() => load(true)}
-              disabled={refreshing || loading}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 backdrop-blur-md transition-all duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00] disabled:opacity-50"
-            >
-              <RefreshCw size={12} className={refreshing ? "animate-spin" : ""} strokeWidth={2} />
-              Refresh
-            </button>
-            <Link
-              href={CTA_LINKS.sports}
-              className="text-sm font-semibold text-[#FF6B00] transition-colors hover:text-[#FF8A00]"
-            >
-              View All →
-            </Link>
-          </div>
-        </div>
-
-        {/* Loading */}
-        {loading && (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {Array.from({ length: MAX_CARDS }).map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
-          </div>
-        )}
-
-        {/* Error */}
-        {!loading && error && (
-          <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] py-16 text-center">
-            <span className="grid h-12 w-12 place-items-center rounded-xl border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-              <WifiOff size={20} strokeWidth={1.7} />
-            </span>
-            <p className="text-sm font-medium text-slate-400">{error}</p>
-            <button
-              onClick={() => load(true)}
-              className="rounded-xl border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-5 py-2 text-xs font-bold text-[#FF6B00] transition-all hover:bg-[#FF6B00] hover:text-white"
-            >
-              Try Again
-            </button>
-          </div>
-        )}
-
-        {/* Empty */}
-        {!loading && !error && matches.length === 0 && (
-          <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] py-16 text-center">
-            <span className="grid h-12 w-12 place-items-center rounded-xl border border-[#138808]/30 bg-[#138808]/10 text-[#138808]">
-              <Wifi size={20} strokeWidth={1.7} />
-            </span>
-            <p className="text-sm font-medium text-slate-400">No live matches available.</p>
-          </div>
-        )}
-
-        {/* Data */}
-        {!loading && !error && matches.length > 0 && (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {matches.map((match) => (
-              <EventCard key={match.id} match={match} />
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );

@@ -10,18 +10,28 @@ import FAQ from "@/components/sections/FAQ";
 import { staticPageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import sports, { sportsContent } from "@/data/sports";
+import { Activity, ShieldCheck, TrendingUp, ZapIcon } from "lucide-react";
 
 export const metadata: Metadata = staticPageMetadata({
-  title: "Sports Betting",
+  title: "Live Cricket Betting & Sports Betting Markets India | BetIndia ",
   description:
-    "Live sports betting with real-time odds on cricket, football, tennis and 50+ sports. Fast withdrawals, secure payments.",
+    "Enjoy live cricket betting and sports betting on football, tennis, kabaddi, and more. Get competitive odds, live markets, secure payments, and fast withdrawals at BetIndia.",
   path: "/sports",
 });
 
 export const revalidate = 300;
 
-// Accent colors alternate per block, same as the original hardcoded sequence
-const ACCENT_COLORS = ["#138808", "#FF6B00", "#138808", "#FF6B00"] as const;
+const BETTING_MARKETS = [
+  "Match Winner", "Toss Winner", "Top Batsman", "Top Bowler",
+  "Over/Under Runs", "Both Teams to Score", "Player Performance",
+] as const;
+
+const FEATURES = [
+  { icon: Activity,    title: "Live Betting",      sub: "Real-time odds" },
+  { icon: ZapIcon,         title: "Fast Withdrawals",  sub: "Instant payouts" },
+  { icon: ShieldCheck, title: "Secure Platform",   sub: "100% protected" },
+  { icon: TrendingUp,  title: "Real-Time Markets", sub: "500+ markets" },
+] as const;
 
 export default async function SportsPage() {
   const page = await getPage("sports");
@@ -38,26 +48,7 @@ export default async function SportsPage() {
   const whyBetItems = whyBet.items && whyBet.items.length > 0 ? whyBet.items : sportsContent.whyBet.items;
 
   const liveCricket = { ...sportsContent.liveCricket, ...(page.liveCricket ?? {}) };
-  const seoBlocks = { ...sportsContent.seoBlocks, ...(page.seoBlocks ?? {}) };
 
-  const seoSections = [
-    {
-      title: seoBlocks.liveCricketBettingTitle,
-      text: seoBlocks.liveCricketBettingText,
-    },
-    {
-      title: seoBlocks.sportsbookTitle,
-      text: seoBlocks.sportsbookText,
-    },
-    {
-      title: seoBlocks.availableMarketsTitle,
-      text: seoBlocks.availableMarketsText,
-    },
-    {
-      title: seoBlocks.whyChooseTitle,
-      text: seoBlocks.whyChooseText,
-    },
-  ];
 
   return (
     <>
@@ -66,15 +57,41 @@ export default async function SportsPage() {
         {/* 1. Hero */}
         <SportsHero content={heroContent} />
 
+
+        <section className="relative overflow-hidden bg-[#050B18]">
+          <div className="mx-auto max-w-7xl space-y-9 px-4 py-6 sm:px-6 lg:px-8">
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+              {FEATURES.map(({ icon: Icon, title, sub }) => (
+                <li key={title} className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#FF6B00] backdrop-blur-md">
+                    <Icon size={16} strokeWidth={1.8} />
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold text-white">{title}</span>
+                    <span className="block text-xs text-slate-400">{sub}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+              Experience the excitement of real-time sports betting with live markets, competitive odds, and seamless gameplay. From cricket and football to tennis, kabaddi, and more, BetIndia gives you access to a wide range of betting opportunities backed by fast payouts and a secure platform.
+            </p>
+          </div>
+        </section>
+
+
+
+
+
+
         {/* 2. Why Bet with Us? */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <section className="relative overflow-hidden bg-[#050B18]">
           <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#138808]/7 blur-2xl" />
-          <div className="relative z-10 mx-auto max-w-7xl">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
                 {whyBet.title}
               </h2>
-              <div className="mx-auto mt-4 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {whyBetItems.map((item: { title: string; description: string }) => (
@@ -88,22 +105,20 @@ export default async function SportsPage() {
         </section>
 
         {/* 3. Live Cricket Betting (Centered Title & Centered Text) */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-          <div className="relative z-10 mx-auto max-w-5xl">
+        <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
                 {liveCricket.title}
               </h2>
-              <div className="mx-auto mt-3.5 h-1 w-16 bg-gradient-to-r from-[#FF6B00] to-[#138808] rounded-full" />
             </div>
-            <p className="text-sm sm:text-base leading-relaxed text-slate-300 text-center">
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300">
               {liveCricket.text}
             </p>
           </div>
         </section>
 
-        {/* 4. Live Matches Dashboard */}
-        <LiveMatches />
+ 
 
         {/* 5. Explore Popular Sports */}
         <PopularSports content={page.popularSports} />
@@ -111,30 +126,56 @@ export default async function SportsPage() {
         {/* 6. Popular Betting Markets */}
         <BettingMarkets content={page.bettingMarkets} />
 
-        {/* SEO Text Blocks (Editorial Split Stacks) — generated from seoSections */}
-        <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-          <div className="relative z-10 mx-auto max-w-7xl space-y-16">
-            {seoSections.map((block, index) => (
-              <div
-                key={block.title}
-                className={`grid grid-cols-1 gap-8 lg:grid-cols-3 ${
-                  index > 0 ? "border-t border-white/[0.06] pt-12" : ""
-                }`}
-              >
-                <div className="lg:col-span-1">
-                  <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-                    {block.title}
-                  </h2>
-                  <div
-                    className="mt-4 h-1 w-16 rounded-full"
-                    style={{ backgroundColor: ACCENT_COLORS[index] }}
-                  />
-                </div>
-                <div className="lg:col-span-2 text-slate-400 text-sm leading-relaxed whitespace-pre-line">
-                  {block.text}
-                </div>
+        {/* Live Cricket Betting & Sports Betting Markets */}
+        <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 space-y-14">
+
+            {/* Block 1 — Live Cricket Betting */}
+            <div>
+              <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl text-center">
+                Live Cricket Betting &amp; Sports Betting Markets
+              </h2>
+              
+              <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-300">
+                BetIndia provides a complete online sports betting experience with live cricket betting, football betting, tennis markets, kabaddi betting, and more. Access real-time odds, in-play betting opportunities, secure transactions, and fast withdrawals from a single platform.
+              </p>
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-300">
+                Our sportsbook covers domestic and international competitions, allowing players to bet on match winners, toss outcomes, player performances, over/under markets, and many other popular betting options.
+              </p>
+            </div>
+
+            {/* Block 2 — Sportsbook */}
+            <div className="border-t border-white/[0.06] pt-12">
+              <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl text-center">
+                Sportsbook for Cricket, Football &amp; More
+              </h2>
+             
+              <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-300">
+                BetIndia offers a complete sportsbook experience covering cricket, football, tennis, badminton, volleyball, kabaddi, and other popular sports. With live betting, pre-match markets, competitive odds, and secure transactions, players can enjoy a seamless betting experience across multiple sporting events.
+              </p>
+            </div>
+
+            {/* Block 3 — Betting Markets Available */}
+            <div className="border-t border-white/[0.06] pt-12">
+              <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl text-center">
+                Sports Betting Markets Available
+              </h2>
+             
+              <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-300">
+                Players can explore a variety of betting markets including Match Winner, Toss Winner, Top Batsman, Top Bowler, Over/Under Runs, Both Teams to Score, and Player Performance Markets. With live betting available throughout the match, users can place bets based on changing odds and real-time game situations.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {BETTING_MARKETS.map((market) => (
+                  <span
+                    key={market}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-semibold text-slate-400 transition-colors duration-200 hover:border-[#FF6B00]/40 hover:text-[#FF6B00]"
+                  >
+                    {market}
+                  </span>
+                ))}
               </div>
-            ))}
+            </div>
+
           </div>
         </section>
 

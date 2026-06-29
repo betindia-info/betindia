@@ -87,10 +87,10 @@ export default function Promotions({ content }: { content?: Partial<typeof homeC
         className="pointer-events-none absolute bottom-0 right-0 h-[280px] w-[280px] translate-x-1/3 translate-y-1/2 rounded-full bg-[#138808]/6 blur-2xl"
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto ">
         {/* Header */}
         <div className="mb-10 flex items-end justify-between gap-4">
-          <div className="text-center flex-1 lg:text-left">
+          <div className="text-center flex-1 lg:text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#FF6B00]" />
               Limited Time Offers
@@ -109,13 +109,16 @@ export default function Promotions({ content }: { content?: Partial<typeof homeC
               )}
             </h2>
 
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base lg:mx-0">
+            <p className="mx-auto mt-4   text-sm text-slate-400 md:text-base lg:mx-0">
               {subtitle}
             </p>
           </div>
 
           {/* Desktop arrows */}
-          <div className="hidden shrink-0 items-center gap-2 lg:flex">
+         
+        </div>
+
+         <div className="hidden shrink-0 items-center gap-2 lg:flex">
             <button
               onClick={() => scroll(-1)}
               disabled={atStart}
@@ -133,7 +136,6 @@ export default function Promotions({ content }: { content?: Partial<typeof homeC
               <ChevronRight size={18} strokeWidth={2} />
             </button>
           </div>
-        </div>
 
         {/* Carousel track wrapper */}
         <div className="relative">

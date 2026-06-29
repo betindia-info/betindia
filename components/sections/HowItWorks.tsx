@@ -86,7 +86,7 @@ export default function HowItWorks({ content }: { content?: Partial<typeof homeC
   }));
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+    <section className="relative overflow-hidden bg-[#050B18] px-4 py-12 sm:px-6 md:py-14 lg:px-4">
       {/* Ambient glow */}
       <div
         aria-hidden

@@ -48,7 +48,7 @@ export default function WhyBetIndia({ content }: { content?: Partial<typeof home
             {title}
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base whitespace-pre-line">
+          <p className="mx-auto mt-4 max-w-5xl text-sm leading-relaxed text-slate-400 md:text-base ">
             {subtitle}
           </p>
         </div>

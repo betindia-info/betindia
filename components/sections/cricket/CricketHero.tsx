@@ -3,12 +3,6 @@ import { Activity, ShieldCheck, Zap, BarChart3 } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { cricketContent } from "@/data/cricket";
 
-const TRUST = [
-  { icon: Activity,    text: "Ball-by-Ball Odds"   },
-  { icon: Zap,         text: "Instant Cashout"      },
-  { icon: BarChart3,   text: "500+ Markets"         },
-  { icon: ShieldCheck, text: "Secure & Licensed"    },
-] as const;
 
 const MARKETS = [
   "Match Winner",
@@ -56,19 +50,7 @@ export default function CricketHero({ content }: { content?: Partial<typeof cric
             </a>
           </div>
 
-          <ul className="mt-9 grid w-full grid-cols-2 gap-3">
-            {TRUST.map(({ icon: Icon, text }) => (
-              <li
-                key={text}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-                  <Icon size={14} strokeWidth={2} />
-                </span>
-                <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
-              </li>
-            ))}
-          </ul>
+          
         </div>
 
         {/* RIGHT — Scorecard mockup */}

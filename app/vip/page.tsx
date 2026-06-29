@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import VIPHero from "@/components/sections/vip/VIPHero";
@@ -10,6 +11,7 @@ import FAQ from "@/components/sections/FAQ";
 import { staticPageMetadata } from "@/lib/seo";
 import { getPage } from "@/lib/cms";
 import VIPBenefitsData, { vipBenefitsContent } from "@/data/VIPBenefits";
+import { Gift, TrendingUp, Users, Zap } from "lucide-react";
 
 export const metadata: Metadata = staticPageMetadata({
   title: "VIP Program India",
@@ -31,9 +33,9 @@ function CenteredSeoSection({
   gradientWord?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 py-16 sm:px-6 lg:px-8 border-t border-white/[0.04]">
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl">
+    <section className="relative overflow-hidden bg-[#050B18] border-t border-white/[0.04]">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl text-center">
           {gradientWord && title.includes(gradientWord) ? (
             <>
               {title.split(gradientWord)[0]}
@@ -46,8 +48,7 @@ function CenteredSeoSection({
             title
           )}
         </h2>
-        <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#FF6B00] to-[#138808]" />
-        <p className="mx-auto mt-6 max-w-3xl whitespace-pre-line text-sm leading-relaxed text-slate-300 sm:text-base">
+        <p className="mt-6 whitespace-pre-line text-sm leading-relaxed text-slate-300 sm:text-base">
           {text}
         </p>
       </div>
@@ -59,12 +60,44 @@ export default async function VIPPage() {
   const page = await getPage("vip-benefits");
   const heroContent = page.hero || VIPBenefitsData.sections.hero;
   const seoBlocks = { ...vipBenefitsContent.seoBlocks, ...(page.seoBlocks ?? {}) };
+  const HIGHLIGHT_ICONS = [Gift, Users, TrendingUp, Zap] as const;
+  const highlights = ["Exclusive VIP Rewards", "Dedicated Support", "Higher Limits", "Faster Withdrawals"] as const;
 
   return (
     <>
       <Header />
       <main>
         <VIPHero content={heroContent} />
+
+        <section className="relative overflow-hidden bg-[#050B18]">  
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
+
+            
+             <ul className="mt-9 grid w-full grid-cols-4 gap-3">
+            {highlights.map((text, i) => {
+              const Icon = HIGHLIGHT_ICONS[i] ?? Gift;
+              return (
+                <li
+                  key={text}
+                  className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
+                    <Icon size={14} strokeWidth={2} />
+                  </span>
+                  <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
+                </li>
+              );
+            })}
+          </ul>
+            <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+              Welcome to the BetIndia VIP Program, an exclusive membership designed for players who want more from their gaming experience. Enjoy faster withdrawals, dedicated account management, higher betting limits, personalized rewards, and exclusive VIP promotions. Whether you enjoy Live Casino Games, Online Slots, Teen Patti, Aviator, or Sports Betting, our VIP Membership is built to reward loyalty and elevate every moment of play.
+            </p>
+
+
+           
+          </div>
+        </section>
+
         <VIPBenefits />
         <VIPLevels />
         <VIPManager />

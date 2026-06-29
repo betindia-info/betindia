@@ -55,17 +55,7 @@ export default function PromotionsHero({ content }: { content?: Partial<typeof p
           </div>
 
           {/* Stats strip */}
-          <div className="mt-10 grid w-full grid-cols-2 gap-3 sm:grid-cols-4">
-            {STATS.map(({ value, label, accent }) => (
-              <div
-                key={label}
-                className="flex flex-col items-center gap-1 rounded-2xl border border-white/[0.07] bg-white/[0.04] px-3 py-4 text-center backdrop-blur-md"
-              >
-                <span className="text-lg font-black leading-none" style={{ color: accent }}>{value}</span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500">{label}</span>
-              </div>
-            ))}
-          </div>
+         
         </div>
 
         {/* RIGHT — Bonus Preview Panel */}

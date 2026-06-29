@@ -1,10 +1,10 @@
 
 export const homeContent = {
   hero: {
-    title: "Play Live Casino Games, Online Slots, Teen Patti",
-    highlightedTitle: "Enjoy Real-Time Entertainment",
+    title: "Cricket Betting ID Provider & Online Casino Platform in India",
+    highlightedTitle: "",
     description:
-      "India's most trusted destination for sports betting, casino games and non-stop entertainment.",
+      "Play Live Casino Games, Online Slots, Teen Patti & Enjoy Real-Time Entertainment.",
     imageUrl: "",
     imageAlt: "BetIndia sports betting and casino",
     ctaPrimary: "BET ON SPORTS",

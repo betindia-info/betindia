@@ -1,16 +1,8 @@
 import Link from "next/link";
-import { Activity, Zap, BarChart3, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { volleyballContent } from "@/data/volleyball";
 
 const ACCENT = "#6366f1";
-
-const TRUST = [
-  { icon: Activity, text: "Live Volleyball Odds" },
-  { icon: Zap, text: "In-Play Betting" },
-  { icon: BarChart3, text: "Set-by-Set Markets" },
-  { icon: ShieldCheck, text: "Fast Withdrawals" },
-] as const;
 
 export default function VolleyballHero({
   content,
@@ -48,20 +40,6 @@ export default function VolleyballHero({
               {data.secondaryCta}
             </a>
           </div>
-
-          <ul className="mt-9 grid w-full grid-cols-2 gap-3">
-            {TRUST.map(({ icon: Icon, text }) => (
-              <li
-                key={text}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-                  <Icon size={14} strokeWidth={2} />
-                </span>
-                <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="order-1 lg:order-2">

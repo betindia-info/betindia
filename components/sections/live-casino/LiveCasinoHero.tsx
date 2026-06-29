@@ -2,12 +2,7 @@ import Link from "next/link";
 import { Users, Video, Zap, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 
-const TRUST = [
-  { icon: Users,      text: "Live Dealers"        },
-  { icon: Video,      text: "Real-Time Gameplay"  },
-  { icon: Zap,        text: "Instant Results"     },
-  { icon: ShieldCheck, text: "Secure Gaming"      },
-] as const;
+
 
 const LIVE_GAMES = [
   { emoji: "🎡", name: "Roulette",    players: "1.2k", accent: "#FF6B00" },
@@ -26,7 +21,7 @@ export default function LiveCasinoHero() {
     }}
     >
      
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
 
         {/* LEFT */}
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
@@ -65,20 +60,6 @@ export default function LiveCasinoHero() {
               Explore Games
             </a>
           </div>
-
-          <ul className="mt-9 grid w-full grid-cols-2 gap-3">
-            {TRUST.map(({ icon: Icon, text }) => (
-              <li
-                key={text}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-                  <Icon size={14} strokeWidth={2} />
-                </span>
-                <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         

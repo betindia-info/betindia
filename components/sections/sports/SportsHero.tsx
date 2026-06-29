@@ -38,13 +38,12 @@ export default function SportsHero({ content = DEFAULT_CONTENT }: { content?: Pa
 
   return (
     <section
-      className="relative overflow-hidden bg-black  bg-contain bg-right bg-no-repeat"
+      className="relative overflow-hidden h-[500px]  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: ` url(${heroImage})`,
       }}
     >
-      <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#FF6B00]/10 blur-2xl" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-44 -right-24 h-[460px] w-[460px] rounded-full bg-[#138808]/10 blur-2xl" />
+      
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
         {/* LEFT â€” Content */}
@@ -74,19 +73,7 @@ export default function SportsHero({ content = DEFAULT_CONTENT }: { content?: Pa
             </a>
           </div>
 
-          <ul className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 lg:justify-start">
-            {FEATURES.map(({ icon: Icon, title, sub }) => (
-              <li key={title} className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#FF6B00] backdrop-blur-md">
-                  <Icon size={16} strokeWidth={1.8} />
-                </span>
-                <span>
-                  <span className="block text-sm font-semibold text-white">{title}</span>
-                  <span className="block text-xs text-slate-400">{sub}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
+        
         </div>
 
      

@@ -53,7 +53,7 @@ export default function BettingMarkets({ content }: { content?: Partial<typeof s
               title
             )}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base">
+          <p className="mx-auto mt-4 max-w-5xl text-sm leading-relaxed text-slate-400 md:text-base">
             {subtitle}
           </p>
         </div>

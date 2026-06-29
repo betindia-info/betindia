@@ -52,20 +52,7 @@ export const sportsContent = {
     ]
   },
 
-  seoBlocks: {
-    liveCricketBettingTitle: "Live Cricket Betting & Sports Betting Markets",
-    liveCricketBettingText: "BetIndia provides a complete online sports betting experience with live cricket betting, football betting, tennis markets, kabaddi betting, and more. Access real-time odds, in-play betting opportunities, secure transactions, and fast withdrawals from a single platform.\n\nOur sportsbook covers domestic and international competitions, allowing players to bet on match winners, toss outcomes, player performances, over/under markets, and many other popular betting options.",
-    
-    sportsbookTitle: "Sportsbook for Cricket, Football & More",
-    sportsbookText: "BetIndia offers a complete sportsbook experience covering cricket, football, tennis, badminton, volleyball, kabaddi, and other popular sports. With live betting, pre-match markets, competitive odds, and secure transactions, players can enjoy a seamless betting experience across multiple sporting events.",
-
-    availableMarketsTitle: "Sports Betting Markets Available",
-    availableMarketsText: "Players can explore a variety of betting markets including Match Winner, Toss Winner, Top Batsman, Top Bowler, Over/Under Runs, Both Teams to Score, and Player Performance Markets. With live betting available throughout the match, users can place bets based on changing odds and real-time game situations.",
-
-    whyChooseTitle: "Why Choose BetIndia for Sports Betting?",
-    whyChooseText: "BetIndia is a trusted online sportsbook offering live cricket betting, football betting, tennis betting, and other popular sports markets. Players can access competitive odds, real-time betting opportunities, secure payment methods, and fast withdrawals. Whether you are interested in T20 cricket, international tournaments, or major sporting events, BetIndia provides a seamless betting experience with multiple betting markets available throughout the match.",
-  },
-
+ 
   finalCta: {
     title: "Join Thousands of Sports Fans",
     subtitle: "Ready to Start Betting?",

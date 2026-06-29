@@ -1,0 +1,168 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { ChevronLeft, Globe, Loader2, Save } from "lucide-react";
+import { getPageMeta, savePageMeta } from "@/lib/cms";
+
+function formatLabel(id: string) {
+  return id
+    .replace(/([A-Z])/g, " $1")
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
+}
+
+export default function PageSeoEditor() {
+  const { pageId } = useParams();
+  const router = useRouter();
+
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+  const [slug, setSlug] = useState("");
+  const [pageName, setPageName] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (!pageId) return;
+
+    async function loadData() {
+      const data = await getPageMeta(String(pageId));
+      if (data) {
+        setMetaTitle(data.metaTitle || "");
+        setMetaDescription(data.metaDescription || "");
+        setSlug(data.slug || `/${pageId}`);
+        setPageName(data.name || formatLabel(String(pageId)));
+      } else {
+        setPageName(formatLabel(String(pageId)));
+        setSlug(`/${pageId}`);
+      }
+      setLoading(false);
+    }
+
+    loadData();
+  }, [pageId]);
+
+  async function handleSave() {
+    if (!metaTitle.trim() || !metaDescription.trim()) {
+      alert("Please fill in both the Meta Title and Meta Description.");
+      return;
+    }
+
+    setSaving(true);
+    const success = await savePageMeta(String(pageId), {
+      metaTitle: metaTitle.trim(),
+      metaDescription: metaDescription.trim(),
+    });
+    setSaving(false);
+    if (success) {
+      alert("SEO Settings Saved!");
+      router.push("/admin/seo");
+    } else {
+      alert("Failed to save SEO Settings.");
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 px-6 py-10 text-zinc-400">
+        <Loader2 size={18} className="animate-spin" />
+        Loading Page SEO Data…
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-6 text-white">
+      <Link
+        href="/admin/seo"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-400 transition hover:text-white"
+      >
+        <ChevronLeft size={16} />
+        Back to SEO Pages
+      </Link>
+
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#FF6B00]">
+          SEO Settings
+        </p>
+        <h1 className="mt-1 text-3xl font-bold">{pageName}</h1>
+        <p className="mt-2 text-sm text-zinc-400">
+          Edit search engine metadata for this page.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* Editor Form */}
+        <div className="space-y-6 md:col-span-2 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+          <div className="space-y-2">
+            <label htmlFor="metaTitle" className="block text-sm font-semibold text-zinc-300">
+              Meta Title
+            </label>
+            <input
+              id="metaTitle"
+              type="text"
+              value={metaTitle}
+              onChange={(e) => setMetaTitle(e.target.value)}
+              placeholder="e.g. Best Cricket Betting Sites in India | BetIndia"
+              className="w-full rounded-lg border border-zinc-800 bg-[#030810] px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-[#FF6B00] focus:outline-none"
+            />
+            <p className="text-right text-[11px] text-zinc-500">
+              {metaTitle.length} characters (Recommended: 50-60)
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="metaDescription" className="block text-sm font-semibold text-zinc-300">
+              Meta Description
+            </label>
+            <textarea
+              id="metaDescription"
+              rows={4}
+              value={metaDescription}
+              onChange={(e) => setMetaDescription(e.target.value)}
+              placeholder="e.g. Find India's most trusted online cricket betting sites with live IPL odds..."
+              className="w-full rounded-lg border border-zinc-800 bg-[#030810] px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-[#FF6B00] focus:outline-none"
+            />
+            <p className="text-right text-[11px] text-zinc-500">
+              {metaDescription.length} characters (Recommended: 150-160)
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saving}
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B00] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#FF8A00] disabled:opacity-60 cursor-pointer"
+          >
+            <Save size={16} />
+            {saving ? "Saving Changes…" : "Save SEO Settings"}
+          </button>
+        </div>
+
+        {/* Live Search Engine Preview */}
+        <div className="space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            Search Result Preview
+          </p>
+          <div className="rounded-xl border border-zinc-800 bg-[#0c1322] p-5 shadow-lg">
+            <span className="text-xs text-zinc-400">google.com</span>
+            <div className="mt-1.5">
+              <span className="text-[11px] text-zinc-500 block truncate">
+                https://betindia.co{slug}
+              </span>
+              <span className="text-lg font-medium text-[#8ab4f8] hover:underline cursor-pointer leading-tight mt-0.5 block">
+                {metaTitle || `${pageName} | BetIndia`}
+              </span>
+              <p className="mt-1 text-sm text-zinc-400 leading-normal line-clamp-3 font-sans">
+                {metaDescription || "Please write a meta description to see how your site will appear in Google search results."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

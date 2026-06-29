@@ -1,17 +1,14 @@
 export const tennisContent = {
   hero: {
-    title: "Grand Slams, ATP & WTA",
-    description:
-      "Bet on the world's biggest tennis tournaments with live odds, in-play markets, and competitive tennis betting lines across Grand Slams, ATP Tour, and WTA Tour events.",
-    primaryCta: "Explore Tennis Matches",
+    title: "Tennis Betting in India – Bet on Live Tennis Matches & Competitive Odds",
+    description: "",
     secondaryCta: "Start Betting",
   },
 
   liveTennisBetting: {
     title: "Live Tennis Betting",
     text:
-      "Live tennis betting allows players to place bets while the match is in progress, creating a more interactive and exciting experience. With real-time odds, point-by-point score updates, and dynamic in-play betting markets, players can react instantly to every ace, break point, service game, set, and momentum shift.",
-    marketsLabel: "Popular live tennis betting markets include:",
+      "Bet on the world's biggest tennis tournaments with competitive tennis betting odds, live tennis betting, and exciting in-play betting markets at BetIndia. As one of the leading destinations for online tennis betting in India, BetIndia offers real-time odds, secure gameplay, fast withdrawals, and extensive betting markets across every major tournament. Whether you're betting on a Grand Slam final, an ATP Tour match, or a WTA tournament, BetIndia offers extensive tennis betting markets, live tennis odds, and a seamless betting experience across desktop and mobile devices.",
   },
 
   liveMarkets: [
@@ -53,7 +50,7 @@ export const tennisContent = {
       { tournament: "WTA Tour", surface: "Mixed", category: "Professional Tour" },
     ],
   },
-
+  
   seoBlocks: {
     whyChooseTitle: "Why Tennis Fans Choose BetIndia",
     whyChooseText:

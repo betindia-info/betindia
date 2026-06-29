@@ -1,14 +1,6 @@
 import Link from "next/link";
-import { Activity, Zap, BarChart3, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { badmintonContent } from "@/data/badminton";
-
-const TRUST = [
-  { icon: Activity, text: "Live Badminton Odds" },
-  { icon: Zap, text: "In-Play Betting" },
-  { icon: BarChart3, text: "Real-Time Updates" },
-  { icon: ShieldCheck, text: "Fast Withdrawals" },
-] as const;
 
 export default function BadmintonHero({
   content,
@@ -24,7 +16,6 @@ export default function BadmintonHero({
 
       <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
         <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
-
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {data.title}
           </h1>
@@ -46,20 +37,6 @@ export default function BadmintonHero({
               {data.secondaryCta}
             </a>
           </div>
-
-          <ul className="mt-9 grid w-full grid-cols-2 gap-3">
-            {TRUST.map(({ icon: Icon, text }) => (
-              <li
-                key={text}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-md"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
-                  <Icon size={14} strokeWidth={2} />
-                </span>
-                <span className="text-xs font-semibold leading-snug text-slate-300">{text}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="order-1 lg:order-2">
