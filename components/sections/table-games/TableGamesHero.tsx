@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Crown, Layers, Zap, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { tableGamesContent } from "@/data/tablegames";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const TRUST = [
   { icon: Crown, text: "Classic Casino Games" },
@@ -26,7 +27,10 @@ export default function TableGamesHero({ content }: { content?: Partial<typeof t
   const data = { ...tableGamesContent.hero, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#FF6B00]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#138808]/10 blur-3xl" />
 

@@ -6,6 +6,7 @@ export const homeContent = {
     description:
       "Play Live Casino Games, Online Slots, Teen Patti & Enjoy Real-Time Entertainment.",
     imageUrl: "",
+    bgImageUrl: "https://images.unsplash.com/photo-1540747737956-37872404f8c1?q=80&w=1600&auto=format&fit=crop",
     imageAlt: "BetIndia sports betting and casino",
     ctaPrimary: "BET ON SPORTS",
     ctaSecondary: "EXPLORE CASINO",

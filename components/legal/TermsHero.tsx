@@ -1,4 +1,5 @@
 import { FileText, ShieldCheck, Gamepad2, UserCheck } from "lucide-react";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const HIGHLIGHTS = [
   { icon: FileText,   text: "Transparent Policies" },
@@ -17,7 +18,10 @@ export default function TermsHero({ content }: { content?: Partial<typeof DEFAUL
   const data = { ...DEFAULT_CONTENT, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-20 lg:px-8">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-20 lg:px-8"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/8 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#138808]/7 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />

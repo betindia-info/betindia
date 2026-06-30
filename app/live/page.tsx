@@ -12,6 +12,7 @@ import LiveMarketsAvailable from "@/components/sections/live/LiveMarketsAvailabl
 import LiveCTA from "@/components/sections/live/LiveCTA";
 import FAQ from "@/components/sections/FAQ";
 import { pageMetadata } from "@/lib/seo";
+import { getPage } from "@/lib/cms";
 import { liveContent } from "@/data/live";
 import { ActivityIcon, BarChart3, Wallet, Zap } from "lucide-react";
 
@@ -27,7 +28,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const ACCENT_COLORS = ["#FF6B00", "#138808"] as const;
 
-export default function LivePage() {
+export default async function LivePage() {
+  const page = await getPage("live");
+
   const seoSections = [
     {
       title: liveContent.seoBlocks.whyChooseTitle,
@@ -51,7 +54,7 @@ const TRUST = [
     <>
       <Header />
       <main>
-        <LiveHero />
+        <LiveHero content={page.hero} />
         <section className="relative overflow-hidden bg-[#050B18]">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
             <ul className="mt-9 grid w-full grid-cols-2 gap-3 sm:grid-cols-4">

@@ -12,6 +12,20 @@ export default function Hero({content,}: {
   const data = { ...homeContent.hero, ...(content ?? {}) };
   return (
     <section className="relative overflow-hidden bg-[#050B18]">
+      {/* Background Image from URL */}
+      {data.imageUrl && (
+        <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-20">
+          <img
+            src={data.imageUrl}
+            alt=""
+            className="w-full h-full object-cover filter brightness-75"
+          />
+          {/* Smooth overlay gradients to keep text readable and blend with the dark theme */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050B18] via-[#050B18]/75 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050B18] via-transparent to-[#050B18]/50" />
+        </div>
+      )}
+
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#FF6B00]/15 blur-2xl"

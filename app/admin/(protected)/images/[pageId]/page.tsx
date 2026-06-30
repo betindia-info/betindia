@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ChevronLeft, Loader2, Save } from "lucide-react";
 import { getSection, saveSection } from "@/lib/cms";
 import { CMS_DATA } from "@/data";
+import { revalidateSeo } from "../../seo/actions";
 import ImageField from "../../../component/cms/ImageField";
 
 function formatLabel(id: string) {
@@ -66,8 +67,17 @@ export default function PageImageEditor() {
   async function handleSave() {
     setSaving(true);
     const success = await saveSection(String(pageId), "hero", heroData);
+    if (success) {
+      // Refresh the live page so the new image appears immediately
+      // instead of waiting for the ISR revalidate window.
+      try {
+        await revalidateSeo(String(pageId));
+      } catch {
+        // Non-fatal: the page will still refresh on its next revalidate.
+      }
+    }
     setSaving(false);
-    
+
     if (success) {
       alert("Page Image Saved!");
       router.push("/admin/images");

@@ -125,6 +125,79 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* ── Consistent page headings across every page ──────────────────────────────
+   Every page's hero title (<h1> in <main>) uses one fluid size, weight and
+   colour. font-size scales smoothly from phone → desktop (clamp), so it's
+   mobile-optimised automatically. Gradient-accent words keep their colour
+   because their own classes (bg-clip-text / text-transparent) take precedence;
+   only the base colour + size are normalised here. */
+main h1 {
+  font-size: clamp(1.875rem, 1.05rem + 3.7vw, 3rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/* Cleaner heading wrapping on small screens (no awkward single-word lines). */
+main :is(h1, h2, h3) {
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+/* Every page heading solid white — including gradient-accent words. Overrides
+   the bg-clip-text / text-transparent gradient spans so the whole heading is
+   white. Scoped to <main>, so the footer's coloured column titles are kept. */
+main :is(h1, h2, h3, h4, h5, h6),
+main :is(h1, h2, h3, h4, h5, h6) :is(span, strong, em, b, a) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* ── Mobile only (phones < 768px): center all section text. ──────────────────
+   Scoped to <main>, so the header and footer are unaffected. Desktop/tablet
+   (≥ 768px) keep their original alignment. */
+@media (max-width: 767px) {
+  main :is(h1, h2, h3, h4, h5, h6, p, blockquote, li) {
+    text-align: center !important;
+  }
+}
+
+/* ── UI polish: buttons & links ──────────────────────────────────────────────
+   Consistent keyboard focus ring (accessibility) + subtle press feedback. */
+main a:focus-visible,
+main button:focus-visible {
+  outline: 2px solid #FF6B00;
+  outline-offset: 2px;
+  border-radius: 0.6rem;
+}
+main button:active {
+  transform: translateY(0.5px);
+}
+
+/* ── UI polish: mobile spacing (phones < 768px) ──────────────────────────────
+   Shrink oversized section padding so pages feel tighter and less stretched on
+   phones. Only the large paddings are reduced; smaller ones stay as-is. */
+@media (max-width: 767px) {
+  main .py-24 { padding-top: 3rem;    padding-bottom: 3rem;    }
+  main .py-20 { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+  main .py-16 { padding-top: 2.5rem;  padding-bottom: 2.5rem;  }
+  main .pt-20 { padding-top: 2.75rem; }
+  main .pt-16 { padding-top: 2.5rem;  }
+  main .pb-20 { padding-bottom: 2.75rem; }
+  main .pb-16 { padding-bottom: 2.5rem;  }
+}
+
+/* ── UI polish: cards ────────────────────────────────────────────────────────
+   Smooth, consistent transitions on glass/blur cards so hover & focus feel
+   uniform across the site. Deliberately does not override each card's border,
+   radius or background — only normalises the motion. */
+main [class*="backdrop-blur"] {
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
 /* Ticker animation */
 .ticker-track {
   animation: ticker-scroll 28s linear infinite;

@@ -85,7 +85,7 @@ export default function Footer({ columns = COLUMNS }: { columns?: FooterColumn[]
 
       {/* ── Main column grid ─────────────────────────────────────── */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {columns.map((col) => (
             <div key={col.heading}>
               <h3

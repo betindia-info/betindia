@@ -1,5 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { contactUsContent } from "@/data/ContactUs";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const TRUST_POINTS = [
   "Fast Support",
@@ -16,7 +17,10 @@ export default function ContactHero({
   const data = { ...contactUsContent.hero, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18] px-4 py-20 sm:px-6 lg:px-8">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center px-4 py-20 sm:px-6 lg:px-8"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-[#138808]/10 blur-3xl" />
 

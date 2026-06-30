@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Zap, Users, TrendingUp, Gift } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { vipBenefitsContent } from "@/data/VIPBenefits";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 
 
@@ -16,7 +17,10 @@ export default function VIPHero({
     : vipBenefitsContent.hero.highlights;
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[460px] w-[460px] rounded-full bg-[#FF6B00]/14 blur-2xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-44 -right-20 h-[440px] w-[440px] rounded-full bg-[#138808]/10 blur-2xl" />
 

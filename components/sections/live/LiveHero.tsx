@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Activity, Wallet, BarChart3, Zap } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { liveContent } from "@/data/live";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const TRUST = [
   { icon: Activity, text: "Real-Time Odds" },
@@ -10,9 +11,12 @@ const TRUST = [
   { icon: Wallet,   text: "Fast Settlements" },
 ] as const;
 
-export default function LiveHero() {
+export default function LiveHero({ content }: { content?: { imageUrl?: string } | null }) {
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
+      style={heroBgStyle(content?.imageUrl)}
+    >
       {/* Glows */}
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#138808]/10 blur-3xl" />

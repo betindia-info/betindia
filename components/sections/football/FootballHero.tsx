@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Activity, Zap, BarChart3, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { footballContent } from "@/data/football";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 
 
@@ -9,10 +10,13 @@ export default function FootballHero({ content }: { content?: Partial<typeof foo
   const data = { ...footballContent.hero, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-black bg-contain bg-right bg-no-repeat"
-    style={{
-      backgroundImage: `url(/football_hero.png)`,
-    }}
+    <section
+      className="relative overflow-hidden bg-black bg-contain bg-right bg-no-repeat"
+      style={
+        (data as { imageUrl?: string }).imageUrl
+          ? heroBgStyle((data as { imageUrl?: string }).imageUrl)
+          : { backgroundImage: `url(/football_hero.png)` }
+      }
     >
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#138808]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#FF6B00]/10 blur-3xl" />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { volleyballContent } from "@/data/volleyball";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const ACCENT = "#6366f1";
 
@@ -12,7 +13,10 @@ export default function VolleyballHero({
   const data = { ...volleyballContent.hero, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#FF6B00]/10 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#6366f1]/10 blur-3xl" />
 

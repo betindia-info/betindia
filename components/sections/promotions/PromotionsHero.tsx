@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Gift, RefreshCw, Crown, Users, Zap, ShieldCheck, Headphones } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { promotionsContent } from "@/data/promotions";
+import { heroBgStyle } from "@/lib/hero-bg";
 
 const STATS = [
   { value: "10,000+", label: "Active Players",    accent: "#FF6B00" },
@@ -21,7 +22,10 @@ export default function PromotionsHero({ content }: { content?: Partial<typeof p
   const data = { ...promotionsContent.hero, ...(content ?? {}) };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section
+      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
+      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
+    >
       <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[440px] w-[440px] rounded-full bg-[#FF6B00]/14 blur-2xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[420px] w-[420px] rounded-full bg-[#138808]/12 blur-2xl" />
 
