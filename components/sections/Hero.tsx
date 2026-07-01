@@ -7,36 +7,25 @@ export default function Hero({content,}: {
   content?: Partial<typeof homeContent.hero> | null;
 })
  {
-  // Per-field fallback to the defaults in data/home.js so the hero renders
-  // identically even when content is missing or only partially set.
+  
   const data = { ...homeContent.hero, ...(content ?? {}) };
   return (
-    <section className="relative overflow-hidden bg-[#050B18]">
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
       {/* Background Image from URL */}
       {data.imageUrl && (
-        <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-20">
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img
             src={data.imageUrl}
             alt=""
-            className="w-full h-full object-cover filter brightness-75"
+            className="w-full h-full object-cover opacity-60"
           />
-          {/* Smooth overlay gradients to keep text readable and blend with the dark theme */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050B18] via-[#050B18]/75 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050B18] via-transparent to-[#050B18]/50" />
         </div>
       )}
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#FF6B00]/15 blur-2xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-44 -right-24 h-[460px] w-[460px] rounded-full bg-[#138808]/15 blur-2xl"
-      />
+     
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-[58px] sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-[86px]">
-        <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {data.title} {data.highlightedTitle}
@@ -45,8 +34,6 @@ export default function Hero({content,}: {
           <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
             {data.description}
           </p>
-
-        
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
             <Link
@@ -63,44 +50,10 @@ export default function Hero({content,}: {
               {data.ctaSecondary}
             </Link>
           </div>
-
-          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
-            {data.features.map((item) => (
-              <li key={item.title} className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#FF6B00] backdrop-blur-md">
-                  <span className="h-2 w-2 rounded-full bg-[#FF6B00]" />
-                </span>
-                <span>
-                  <span className="block text-sm font-semibold text-white">{item.title}</span>
-                  <span className="block text-xs text-slate-400">{item.sub}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="order-1 lg:order-2">
-          <HeroImage imageUrl={data.imageUrl} imageAlt={data.imageAlt} />
         </div>
       </div>
 
-      <div className="relative z-10 border-y border-[#138808]/30 bg-[#081425]">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#081425] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#081425] to-transparent" />
-
-        <div className="mx-auto flex max-w-7xl snap-x gap-3 overflow-x-auto px-6 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {data.categories.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className="inline-flex flex-none snap-start items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-200 backdrop-blur-md transition hover:border-[#FF6B00] hover:text-[#FF6B00]"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
-              {label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      
     </section>
   );
 }

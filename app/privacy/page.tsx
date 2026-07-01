@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#050B18]">
+      <main className="min-h-screen bg-[#050B18] no-center-mobile">
         <PrivacyHero />
         <InformationCollection />
         <DataUsage />

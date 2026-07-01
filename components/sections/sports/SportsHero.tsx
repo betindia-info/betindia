@@ -37,17 +37,14 @@ export default function SportsHero({ content = DEFAULT_CONTENT }: { content?: Pa
   const heroImage = content.imageUrl?.trim() || DEFAULT_HERO_BG;
 
   return (
-    <section
-      className="relative overflow-hidden h-[500px]  bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: ` url(${heroImage})`,
-      }}
-    >
-      
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img src={heroImage} alt="" className="w-full h-full object-cover opacity-60" />
+      </div>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
-        {/* LEFT â€” Content */}
-        <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {content.title} {content.highlightedTitle}
@@ -72,11 +69,7 @@ export default function SportsHero({ content = DEFAULT_CONTENT }: { content?: Pa
               View Live Matches
             </a>
           </div>
-
-        
         </div>
-
-     
       </div>
     </section>
   );

@@ -45,16 +45,16 @@ export default async function Home() {
 
   const liveCasinoItems = seo.liveCasinoItems && seo.liveCasinoItems.length > 0 ? seo.liveCasinoItems : homeContent.seo.liveCasinoItems;
   const liveCasinoCards = [
-    { icon: Gamepad2, title: liveCasinoItems[0]?.title ?? "Live Blackjack", description: liveCasinoItems[0]?.description ?? "", accent: "#FF6B00" as const },
-    { icon: RefreshCw, title: liveCasinoItems[1]?.title ?? "Live Roulette", description: liveCasinoItems[1]?.description ?? "", accent: "#138808" as const },
-    { icon: Crown, title: liveCasinoItems[2]?.title ?? "Live Baccarat", description: liveCasinoItems[2]?.description ?? "", accent: "#FF6B00" as const },
+    { icon: Gamepad2, title: liveCasinoItems[0]?.title ?? "Live Blackjack", description: liveCasinoItems[0]?.description ?? "", image: liveCasinoItems[0]?.image ?? "", accent: "#FF6B00" as const },
+    { icon: RefreshCw, title: liveCasinoItems[1]?.title ?? "Live Roulette", description: liveCasinoItems[1]?.description ?? "", image: liveCasinoItems[1]?.image ?? "", accent: "#138808" as const },
+    { icon: Crown, title: liveCasinoItems[2]?.title ?? "Live Baccarat", description: liveCasinoItems[2]?.description ?? "", image: liveCasinoItems[2]?.image ?? "", accent: "#FF6B00" as const },
   ];
 
   const popularCasinoItems = seo.popularCasinoItems && seo.popularCasinoItems.length > 0 ? seo.popularCasinoItems : homeContent.seo.popularCasinoItems;
   const popularCasinoCards = [
-    { icon: Gem, title: popularCasinoItems[0]?.title ?? "Online Slots", description: popularCasinoItems[0]?.description ?? "", accent: "#FF6B00" as const },
-    { icon: Users, title: popularCasinoItems[1]?.title ?? "Teen Patti Online", description: popularCasinoItems[1]?.description ?? "", accent: "#138808" as const },
-    { icon: Plane, title: popularCasinoItems[2]?.title ?? "Aviator Game", description: popularCasinoItems[2]?.description ?? "", accent: "#FF6B00" as const },
+    { icon: Gem, title: popularCasinoItems[0]?.title ?? "Online Slots", description: popularCasinoItems[0]?.description ?? "", image: popularCasinoItems[0]?.image ?? "", accent: "#FF6B00" as const },
+    { icon: Users, title: popularCasinoItems[1]?.title ?? "Teen Patti Online", description: popularCasinoItems[1]?.description ?? "", image: popularCasinoItems[1]?.image ?? "", accent: "#138808" as const },
+    { icon: Plane, title: popularCasinoItems[2]?.title ?? "Aviator Game", description: popularCasinoItems[2]?.description ?? "", image: popularCasinoItems[2]?.image ?? "", accent: "#FF6B00" as const },
   ];
 
   return (
@@ -120,7 +120,7 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {liveCasinoCards.map(({ icon: Icon, title: cardTitle, description, accent }) => {
+              {liveCasinoCards.map(({ icon: Icon, title: cardTitle, description, image, accent }) => {
                 const isOrange = accent === "#FF6B00";
                 return (
                   <div
@@ -155,17 +155,26 @@ export default async function Home() {
                         </span>
                         Live
                       </span>
-                      <div
-                        className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                        style={{
-                          background: `${accent}18`,
-                          borderColor: `${accent}35`,
-                          color: accent,
-                          boxShadow: `0 4px 28px ${accent}20`,
-                        }}
-                      >
-                        <Icon size={28} strokeWidth={1.6} />
-                      </div>
+                      {image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={image}
+                          alt={cardTitle}
+                          className="absolute inset-0 z-0 h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                          style={{
+                            background: `${accent}18`,
+                            borderColor: `${accent}35`,
+                            color: accent,
+                            boxShadow: `0 4px 28px ${accent}20`,
+                          }}
+                        >
+                          <Icon size={28} strokeWidth={1.6} />
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-1 flex-col gap-3 p-5">
                       <h3 className="text-lg font-bold text-white">{cardTitle}</h3>
@@ -204,7 +213,7 @@ export default async function Home() {
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              {popularCasinoCards.map(({ icon: Icon, title: cardTitle, description, accent }) => {
+              {popularCasinoCards.map(({ icon: Icon, title: cardTitle, description, image, accent }) => {
                 const isOrange = accent === "#FF6B00";
                 return (
                   <div
@@ -229,17 +238,26 @@ export default async function Home() {
                         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         style={{ background: `radial-gradient(ellipse at 50% 80%, ${accent}28 0%, transparent 60%)` }}
                       />
-                      <div
-                        className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                        style={{
-                          background: `${accent}18`,
-                          borderColor: `${accent}35`,
-                          color: accent,
-                          boxShadow: `0 4px 28px ${accent}20`,
-                        }}
-                      >
-                        <Icon size={28} strokeWidth={1.6} />
-                      </div>
+                      {image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={image}
+                          alt={cardTitle}
+                          className="absolute inset-0 z-0 h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="relative z-10 grid h-16 w-16 place-items-center rounded-2xl border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                          style={{
+                            background: `${accent}18`,
+                            borderColor: `${accent}35`,
+                            color: accent,
+                            boxShadow: `0 4px 28px ${accent}20`,
+                          }}
+                        >
+                          <Icon size={28} strokeWidth={1.6} />
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-1 flex-col gap-3 p-5">
                       <h3 className="text-lg font-bold text-white">{cardTitle}</h3>

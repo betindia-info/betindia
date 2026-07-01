@@ -13,9 +13,10 @@ import ContactUs, { contactUsContent } from "@/data/ContactUs";
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({
     pageId: "contact-us",
-    title: "Contact BetIndia Customer Support",
+    title: "Contact BetIndia",
+    absoluteTitle: "Contact BetIndia | 24/7 Customer Support & Help",
     description:
-      "Contact BetIndia customer support 24/7 for help with accounts, sports betting, casino games, deposits, withdrawals, and promotions.",
+      "Contact BetIndia for 24/7 customer support with sports betting, live betting, online casino games, deposits, withdrawals, account assistance, and technical enquiries.",
     path: "/contact",
   });
 }

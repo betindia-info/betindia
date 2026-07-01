@@ -34,16 +34,22 @@ const DEFAULT_CONTENT: PageHeroContent = {
 
 export default function CasinoHero({ content = DEFAULT_CONTENT }: { content?: PageHeroContent }) {
   return (
-    <section
-      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center"
-      style={content.imageUrl ? { backgroundImage: `linear-gradient(rgba(5, 11, 24, 0.82), rgba(5, 11, 24, 0.92)), url(${content.imageUrl})` } : undefined}
-    >
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      {content.imageUrl && (
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <img
+            src={content.imageUrl}
+            alt=""
+            className="w-full h-full object-cover opacity-60"
+          />
+        </div>
+      )}
       <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#FF6B00]/15 blur-2xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-44 -right-24 h-[460px] w-[460px] rounded-full bg-[#138808]/12 blur-2xl" />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
-        {/* LEFT â€” Content */}
-        <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
+        {/* LEFT */}
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {content.title} {content.highlightedTitle}
@@ -67,72 +73,6 @@ export default function CasinoHero({ content = DEFAULT_CONTENT }: { content?: Pa
             >
               Play Live Casino
             </Link>
-          </div>
-
-          {/* Trust points */}
-         
-        </div>
-
-        {/* RIGHT â€” Casino Games Preview */}
-        <div className="order-1 lg:order-2">
-          <div className="relative mx-auto max-w-sm lg:max-w-none">
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[#FF6B00]/8 blur-3xl" />
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl sm:p-6">
-              {/* Header row */}
-              <div className="mb-5 flex items-center justify-between">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Featured Games</p>
-                <span className="rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-3 py-1 text-[10px] font-bold text-[#FF6B00]">
-                  500+ Games
-                </span>
-              </div>
-
-              {/* 2Ã—3 game grid */}
-              <div className="grid grid-cols-3 gap-3">
-                {PREVIEW_GAMES.map(({ icon: Icon, label, badge, accent }) => (
-                  <div
-                    key={label}
-                    className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.04] p-3 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.08]"
-                  >
-                    {/* Gradient bg */}
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-30"
-                      style={{
-                        background: `radial-gradient(ellipse at 50% 0%, ${accent}30 0%, transparent 70%)`,
-                      }}
-                    />
-                    {/* Badge */}
-                    <span
-                      className="mb-2.5 inline-block rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide"
-                      style={{ color: accent, background: `${accent}18` }}
-                    >
-                      {badge}
-                    </span>
-                    {/* Icon */}
-                    <div
-                      className="mb-2 grid h-10 w-10 place-items-center rounded-xl border transition-transform duration-200 group-hover:scale-110"
-                      style={{ background: `${accent}18`, borderColor: `${accent}30`, color: accent }}
-                    >
-                      <Icon size={18} strokeWidth={1.7} />
-                    </div>
-                    {/* Label */}
-                    <p className="text-[11px] font-bold leading-tight text-white">{label}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Bottom CTA row */}
-              <div className="mt-5 border-t border-white/[0.06] pt-4">
-                <Link
-                  href={CTA_LINKS.signup}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6B00] py-3 text-sm font-bold text-white transition-all duration-200 hover:bg-[#FF8A00] hover:shadow-lg hover:shadow-[#FF6B00]/25"
-                >
-                  Play Now â€” It&apos;s Free to Join
-                </Link>
-              </div>
-              <p className="mt-3 text-center text-[10px] text-slate-600">
-                18+ only Â· Play Responsibly
-              </p>
-            </div>
           </div>
         </div>
       </div>

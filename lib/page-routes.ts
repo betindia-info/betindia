@@ -26,6 +26,7 @@ export const PAGE_ROUTES: Record<string, string> = {
   blog: "/blog",
   live: "/live",
   "live-casino": "/live-casino",
+  esports: "/esports",
 };
 
 /** Public route for a pageId, or null if the pageId isn't a known public route. */

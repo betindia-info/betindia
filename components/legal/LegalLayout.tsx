@@ -135,7 +135,7 @@ export default function LegalLayout({
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#050B18] text-white">
+      <main className="min-h-screen bg-[#050B18] text-white no-center-mobile">
         {/* Ambient glow */}
         <div
           aria-hidden

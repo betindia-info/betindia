@@ -1,6 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Globe, X, Send } from "lucide-react";
+import {
+  Globe,
+  X,
+  Send,
+  Camera,
+  Hash,
+  Share2,
+  Play,
+  Briefcase,
+  MessageCircle,
+  type LucideIcon,
+} from "lucide-react";
+import { getSection } from "@/lib/cms";
+import { DEFAULT_SOCIALS, type SocialLink } from "@/lib/social-links";
+
+// Maps an admin-selected icon key to a lucide icon component.
+const SOCIAL_ICONS: Record<string, LucideIcon> = {
+  instagram: Camera,
+  twitter: Hash,
+  x: X,
+  facebook: Share2,
+  youtube: Play,
+  linkedin: Briefcase,
+  telegram: Send,
+  whatsapp: MessageCircle,
+  globe: Globe,
+};
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 // Exported so future pages can customise the footer columns.
@@ -22,6 +48,7 @@ const COLUMNS: FooterColumn[] = [
       { label: "Tennis", href: "/tennis" },
       { label: "Badminton", href: "/badminton" },
       { label: "Volleyball", href: "/volleyball" },
+      { label: "Kabaddi", href: "/kabaddi" },
     ],
   },
   {
@@ -57,15 +84,15 @@ const COLUMNS: FooterColumn[] = [
   },
 ];
 
-const SOCIALS = [
-  { label: "Instagram", href: "#", icon: Globe },
-  { label: "Twitter / X", href: "#", icon: X },
-  { label: "Telegram", href: "#", icon: Send },
-];
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function Footer({ columns = COLUMNS }: { columns?: FooterColumn[]; content?: Record<string, unknown> }) {
+export default async function Footer({ columns = COLUMNS }: { columns?: FooterColumn[]; content?: Record<string, unknown> }) {
+  // Social links are managed in Admin → Social Links (Firestore); fall back to
+  // the code defaults when nothing has been saved.
+  const saved = await getSection("settings", "social");
+  const socials: SocialLink[] =
+    Array.isArray(saved?.items) && saved.items.length > 0 ? saved.items : DEFAULT_SOCIALS;
+
   return (
     <footer className="relative bg-[#050B18]">
       {/* Subtle gradient overlay */}
@@ -140,16 +167,19 @@ export default function Footer({ columns = COLUMNS }: { columns?: FooterColumn[]
 
           {/* Social icons */}
           <div className="flex items-center gap-2.5">
-            {SOCIALS.map(({ label, href, icon: Icon }) => (
-              <Link
-                key={label}
-                href={href}
-                aria-label={label}
-                className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-200 hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] hover:shadow-md hover:shadow-[#FF6B00]/10"
-              >
-                <Icon size={15} strokeWidth={1.8} />
-              </Link>
-            ))}
+            {socials.map(({ label, href, icon }) => {
+              const Icon = SOCIAL_ICONS[icon] ?? Globe;
+              return (
+                <Link
+                  key={label}
+                  href={href || "#"}
+                  aria-label={label}
+                  className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-200 hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] hover:shadow-md hover:shadow-[#FF6B00]/10"
+                >
+                  <Icon size={15} strokeWidth={1.8} />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Copyright */}

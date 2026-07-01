@@ -157,9 +157,9 @@ main :is(h1, h2, h3, h4, h5, h6) :is(span, strong, em, b, a) {
 
 /* ── Mobile only (phones < 768px): center all section text. ──────────────────
    Scoped to <main>, so the header and footer are unaffected. Desktop/tablet
-   (≥ 768px) keep their original alignment. */
+   (≥ 768px) keep their original alignment. Excludes pages with no-center-mobile class. */
 @media (max-width: 767px) {
-  main :is(h1, h2, h3, h4, h5, h6, p, blockquote, li) {
+  main:not(.no-center-mobile) :is(h1, h2, h3, h4, h5, h6, p, blockquote, li) {
     text-align: center !important;
   }
 }

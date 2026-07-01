@@ -1,10 +1,12 @@
 export const liveContent = {
   hero: {
-    title: "Bet In Real Time",
+    title: "LIVE BETTING & IN PLAY SPORTS BETTING ",
     description:
-      "Experience live cricket betting, football betting, and casino action with real-time odds, instant updates, and exciting in-play betting opportunities. Follow every moment as it happens and place bets based on live match conditions, player performance, and changing game momentum.",
+      "Bet In Real Time",
+    imageUrl:'',
     primaryCta: "View Live Matches",
     secondaryCta: "Start Betting",
+
   },
 
   whyBetLive: {

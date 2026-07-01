@@ -19,6 +19,7 @@ const STATIC_ROUTES: {
   { path: "/tennis",              priority: 0.8,  changeFrequency: "daily"  },
   { path: "/badminton",           priority: 0.8,  changeFrequency: "daily"  },
   { path: "/volleyball",          priority: 0.8,  changeFrequency: "daily"  },
+  { path: "/kabaddi",             priority: 0.8,  changeFrequency: "daily"  },
   { path: "/promotions",          priority: 0.85, changeFrequency: "weekly" },
   { path: "/vip",                 priority: 0.75, changeFrequency: "monthly"},
   { path: "/blog",                priority: 0.8,  changeFrequency: "weekly" },

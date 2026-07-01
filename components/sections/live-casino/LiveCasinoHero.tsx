@@ -15,16 +15,14 @@ const LIVE_GAMES = [
 
 export default function LiveCasinoHero() {
   return (
-    <section className="relative overflow-hidden bg-black bg-contain bg-right bg-no-repeat"
-    style={{
-      backgroundImage: ` url(/live_casino_hero.png)`,
-    }}
-    >
-     
-      <div className="relative z-10 mx-auto max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
-
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img src="/live_casino_hero.png" alt="" className="w-full h-full object-cover opacity-60" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
         {/* LEFT */}
-        <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+        <div className="flex flex-col items-start text-left max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
             <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />
@@ -61,8 +59,6 @@ export default function LiveCasinoHero() {
             </a>
           </div>
         </div>
-
-        
       </div>
     </section>
   );

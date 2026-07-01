@@ -7,7 +7,13 @@ import BooleanField from "./BooleanField";
 import ListField from "./ListField";
 import ObjectField from "./ObjectField";
 import RepeaterField from "./RepeaterField";
+import ImageField from "../ImageField";
 import { detectType } from "./utils";
+
+// Keys whose value is an image URL — these get a Supabase upload widget instead
+// of a plain text box. Works anywhere (top-level or inside card/repeater items).
+// "icon" is deliberately excluded (those hold lucide icon names, not images).
+const IMAGE_LABEL = /\b(image|img|photo|banner|thumbnail|picture|logo|cover|avatar)\b/i;
 
 /**
  * The recursive dispatcher: picks a field component from the value's type.
@@ -17,6 +23,9 @@ export default function DynamicField({ label, value, onChange }) {
   const type = detectType(value);
 
   // ── Leaf fields (render their own label) ───────────────────────────────────
+  // Image-URL fields get a Supabase uploader (also works inside card items).
+  if ((type === "text" || type === "null") && typeof label === "string" && IMAGE_LABEL.test(label))
+    return <ImageField label={label} value={value ?? ""} onChange={onChange} />;
   if (type === "text" || type === "null")
     return <TextField label={label} value={value ?? ""} onChange={onChange} />;
   if (type === "textarea")

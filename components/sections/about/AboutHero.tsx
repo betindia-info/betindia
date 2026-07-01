@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { aboutUsContent } from "@/data/AboutUs";
-import { heroBgStyle } from "@/lib/hero-bg";
 
 export default function AboutHero({
   content,
@@ -11,14 +10,21 @@ export default function AboutHero({
   const data = { ...aboutUsContent.hero, ...(content ?? {}) };
 
   return (
-    <section
-      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center px-4 py-20 sm:px-6 lg:px-8"
-      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
-    >
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      {(data as { imageUrl?: string }).imageUrl && (
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <img
+            src={(data as { imageUrl?: string }).imageUrl}
+            alt=""
+            className="w-full h-full object-cover opacity-60"
+          />
+        </div>
+      )}
       <div aria-hidden className="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-[#138808]/10 blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-[58px] lg:py-[86px]">
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
         <h1 className="mt-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl">
           India&apos;s Trusted Online Sports Betting &{" "}
@@ -32,7 +38,7 @@ export default function AboutHero({
           </p>
 
 
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
           <Link
             href={CTA_LINKS.signup}
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6B00] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#FF6B00]/20 transition-all duration-300 hover:scale-[1.02] hover:bg-[#FF8A00] sm:w-auto"
@@ -46,6 +52,7 @@ export default function AboutHero({
           >
             {data.secondaryCta}
           </Link>
+        </div>
         </div>
       </div>
     </section>

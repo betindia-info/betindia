@@ -5,8 +5,39 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { getSection, saveSection } from "@/lib/cms";
+import { CMS_DATA } from "@/data";
 import DynamicField from "../../../../component/cms/dynamic/DynamicField";
 import { humanize } from "../../../../component/cms/dynamic/utils";
+
+/**
+ * Merge code defaults into the saved Firestore data so newly-added fields
+ * (e.g. a card `image`) show up in the editor without a destructive re-sync.
+ * Saved values always win; defaults only fill in missing keys — including keys
+ * inside repeater/card items (arrays of objects use the first default item as
+ * the shape template).
+ */
+function mergeDefaults(def, val) {
+  if (Array.isArray(def)) {
+    if (!Array.isArray(val)) return val ?? def;
+    const template = def[0];
+    return val.map((item) =>
+      template && typeof template === "object" && item && typeof item === "object"
+        ? mergeDefaults(template, item)
+        : item
+    );
+  }
+  if (def && typeof def === "object") {
+    if (!val || typeof val !== "object") return val ?? def;
+    const out = { ...def, ...val };
+    for (const key of Object.keys(def)) {
+      if (def[key] && typeof def[key] === "object") {
+        out[key] = mergeDefaults(def[key], val[key]);
+      }
+    }
+    return out;
+  }
+  return val === undefined ? def : val;
+}
 
 function formatLabel(id) {
   return id
@@ -30,7 +61,11 @@ export default function SectionEditor() {
 
   async function loadData() {
     const data = await getSection(pageId, sectionId);
-    setForm(data || {});
+    const defaults =
+      CMS_DATA.find((p) => p.pageId === pageId)?.sections?.[sectionId] ?? {};
+    // Fill in any fields missing from the saved doc (e.g. new card images)
+    // from code defaults, without overwriting saved content.
+    setForm(mergeDefaults(defaults, data ?? {}));
     setLoading(false);
   }
 

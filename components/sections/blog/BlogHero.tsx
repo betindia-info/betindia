@@ -4,7 +4,7 @@ const STATS = [
   { value: "Guides", label: "Sports Betting" },
   { value: "Tips", label: "Casino Strategy" },
   { value: "Updates", label: "Latest News" },
-] as const;
+ ] as const;
 
 const DEFAULT_CONTENT: PageHeroContent = {
   pageId: "blog",
@@ -21,11 +21,8 @@ const DEFAULT_CONTENT: PageHeroContent = {
 
 export default function BlogHero({ content = DEFAULT_CONTENT }: { content?: PageHeroContent }) {
   return (
-    <section
-      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center px-4 py-20 sm:px-6 lg:px-8"
-      style={content.imageUrl ? { backgroundImage: `linear-gradient(rgba(5, 11, 24, 0.84), rgba(5, 11, 24, 0.94)), url(${content.imageUrl})` } : undefined}
-    >
-      {/* Ambient glows */}
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px] text-center">
+    
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 -top-32 h-[480px] w-[480px] rounded-full bg-[#FF6B00]/12 blur-3xl"
@@ -45,23 +42,21 @@ export default function BlogHero({ content = DEFAULT_CONTENT }: { content?: Page
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
+      <div className="relative z-10 mx-auto  px-4 sm:px-6 lg:px-8 py-[58px] lg:py-[86px]">
+        <div className="flex flex-col items-center">
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
           <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
           BetIndia Blog
         </span>
 
-        <h1 className="mt-6 text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+        <h1 className="mt-6  font-extrabold leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
             {content.title} {content.highlightedTitle}
           </h1>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-slate-300 md:text-lg">
+          <p className="mt-5  text-base leading-relaxed text-slate-300 md:text-lg">
             {content.description}
           </p>
 
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg">
-          Stay informed with expert insights, sports betting guides, casino strategies, Aviator tips, and the latest gaming trends from the BetIndia team.
-        </p>
 
         {/* Stats row */}
         <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -75,6 +70,7 @@ export default function BlogHero({ content = DEFAULT_CONTENT }: { content?: Page
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">{label}</p>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

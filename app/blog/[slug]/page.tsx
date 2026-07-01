@@ -547,7 +547,7 @@ export default async function BlogSlugPage({
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Header />
-      <main className="min-h-screen bg-[#050B18]">
+      <main className="min-h-screen bg-[#050B18] no-center-mobile">
         <ArticleHero
           category={post.category}
           accent={post.accent}

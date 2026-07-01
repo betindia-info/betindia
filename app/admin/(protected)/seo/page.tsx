@@ -20,6 +20,7 @@ export default function SeoPageList() {
   useEffect(() => {
     async function init() {
       const data = await getPages();
+      console.log(data)
       const pageList = data.map((p) => ({
         id: p.id,
         name: p.name || p.id,

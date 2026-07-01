@@ -76,7 +76,7 @@ export default async function VIPPage() {
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
 
             
-             <ul className="mt-9 grid w-full grid-cols-4 gap-3">
+             <ul className="mt-9 grid w-full  md:grid-cols-4 gap-3">
             {highlights.map((text, i) => {
               const Icon = HIGHLIGHT_ICONS[i] ?? Gift;
               return (

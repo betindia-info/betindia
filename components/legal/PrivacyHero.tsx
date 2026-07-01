@@ -1,11 +1,10 @@
 import { ShieldCheck, Lock, Eye, FileText } from "lucide-react";
-import { heroBgStyle } from "@/lib/hero-bg";
 
 const HIGHLIGHTS = [
   { icon: ShieldCheck, text: "Secure Platform" },
-  { icon: Lock,        text: "Data Protection" },
-  { icon: Eye,         text: "Privacy Focused" },
-  { icon: FileText,    text: "Transparent"      },
+  { icon: Lock, text: "Data Protection" },
+  { icon: Eye, text: "Privacy Focused" },
+  { icon: FileText, text: "Transparent" },
 ] as const;
 
 const DEFAULT_CONTENT = {
@@ -18,21 +17,28 @@ export default function PrivacyHero({ content }: { content?: Partial<typeof DEFA
   const data = { ...DEFAULT_CONTENT, ...(content ?? {}) };
 
   return (
-    <section
-      className="relative overflow-hidden bg-[#050B18] bg-cover bg-center px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-20 lg:px-8"
-      style={heroBgStyle((data as { imageUrl?: string }).imageUrl)}
-    >
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      {(data as { imageUrl?: string }).imageUrl && (
+        <div className="absolute inset-0 z-0 pointer-events-none select-none">
+          <img
+            src={(data as { imageUrl?: string }).imageUrl}
+            alt=""
+            className="w-full h-full object-cover opacity-60"
+          />
+        </div>
+      )}
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/8 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#138808]/7 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-[58px] lg:py-[86px]">
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
         <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            {data.title}
-          </h1>
+          {data.title}
+        </h1>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-400">
+        <p className="mt-5 max-w-md text-base leading-relaxed text-slate-400">
           {data.description}
         </p>
 
@@ -52,6 +58,7 @@ export default function PrivacyHero({ content }: { content?: Partial<typeof DEFA
               <span className="text-xs font-semibold text-slate-300">{text}</span>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

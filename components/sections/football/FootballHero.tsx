@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Activity, Zap, BarChart3, ShieldCheck } from "lucide-react";
 import { CTA_LINKS } from "@/lib/cta-links";
 import { footballContent } from "@/data/football";
-import { heroBgStyle } from "@/lib/hero-bg";
 
 
 
@@ -10,21 +9,19 @@ export default function FootballHero({ content }: { content?: Partial<typeof foo
   const data = { ...footballContent.hero, ...(content ?? {}) };
 
   return (
-    <section
-      className="relative overflow-hidden bg-black bg-contain bg-right bg-no-repeat"
-      style={
-        (data as { imageUrl?: string }).imageUrl
-          ? heroBgStyle((data as { imageUrl?: string }).imageUrl)
-          : { backgroundImage: `url(/football_hero.png)` }
-      }
-    >
+    <section className="relative overflow-hidden bg-[#050B18] min-h-[400px] md:min-h-[500px]">
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img
+          src={(data as { imageUrl?: string }).imageUrl || "/football_hero.png"}
+          alt=""
+          className="w-full h-full object-cover opacity-60"
+        />
+      </div>
       <div aria-hidden className="pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#138808]/12 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#FF6B00]/10 blur-3xl" />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
-
-        {/* LEFT */}
-        <div className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
+        <div className="flex flex-col items-start text-left max-w-3xl">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {data.title}
@@ -50,8 +47,6 @@ export default function FootballHero({ content }: { content?: Partial<typeof foo
             </Link>
           </div>
         </div>
-
-     
       </div>
     </section>
   );

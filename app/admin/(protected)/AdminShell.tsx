@@ -20,6 +20,7 @@ import {
   Globe,
   Image,
   Newspaper,
+  Share2,
 } from "lucide-react";
 import { useState } from "react";
 import { auth } from "@/lib/firebase";
@@ -29,6 +30,7 @@ const NAV = [
   { label: "Blog",         href: "/admin/blog",          icon: Newspaper       },
   { label: "SEO Settings",  href: "/admin/seo",           icon: Globe           },
   { label: "Page Images",   href: "/admin/images",        icon: Image           },
+  { label: "Social Links",  href: "/admin/social",        icon: Share2          },
 ] as const;
 
 const ALERTS = [
@@ -146,6 +148,7 @@ export default function AdminShell({
     if (pathname.startsWith("/admin/blog")) return "/admin/blog";
     if (pathname.startsWith("/admin/seo")) return "/admin/seo";
     if (pathname.startsWith("/admin/images")) return "/admin/images";
+    if (pathname.startsWith("/admin/social")) return "/admin/social";
     return "";
   };
 

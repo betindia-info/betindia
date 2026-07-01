@@ -72,17 +72,17 @@ export const homeContent = {
     liveCasinoTitle: "Live Casino Games",
     liveCasinoSubtitle: "Experience the excitement of a real casino from anywhere with professional dealers and real-time gameplay.",
     liveCasinoItems: [
-      { title: "Live Blackjack", description: "Play one of the world's most popular card games with live dealers and strategic gameplay." },
-      { title: "Live Roulette", description: "Enjoy immersive roulette action streamed directly from premium casino studios." },
-      { title: "Live Baccarat", description: "Experience elegant gameplay, live dealers, and exciting betting opportunities." },
+      { title: "Live Blackjack", description: "Play one of the world's most popular card games with live dealers and strategic gameplay.", image: "" },
+      { title: "Live Roulette", description: "Enjoy immersive roulette action streamed directly from premium casino studios.", image: "" },
+      { title: "Live Baccarat", description: "Experience elegant gameplay, live dealers, and exciting betting opportunities.", image: "" },
     ],
 
     popularCasinoTitle: "Popular Casino Games",
     popularCasinoSubtitle: "Explore a diverse collection of premium casino games.",
     popularCasinoItems: [
-      { title: "Online Slots", description: "Spin exciting slot games featuring jackpots, bonus rounds, and rewarding gameplay." },
-      { title: "Teen Patti Online", description: "Play India's favorite card game with live players, tournaments, and multiplayer tables." },
-      { title: "Aviator Game", description: "Take on India's trending crash game and test your timing skills with every flight." },
+      { title: "Online Slots", description: "Spin exciting slot games featuring jackpots, bonus rounds, and rewarding gameplay.", image: "" },
+      { title: "Teen Patti Online", description: "Play India's favorite card game with live players, tournaments, and multiplayer tables.", image: "" },
+      { title: "Aviator Game", description: "Take on India's trending crash game and test your timing skills with every flight.", image: "" },
     ],
 
     cricketIdTitle: "Get Your Cricket Betting ID in India",
