@@ -84,7 +84,7 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-white transition hover:border-white/30 md:hidden"
+          className="grid h-11 w-11 place-items-center rounded-lg border border-white/10 text-white transition hover:border-white/30 md:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >

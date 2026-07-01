@@ -32,7 +32,7 @@ export default function TennisHero({
       <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-20 h-[460px] w-[460px] rounded-full bg-[#eab308]/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
-        <div className="flex flex-col items-start text-left max-w-3xl">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-3xl">
 
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,4rem)]">
             {data.title}

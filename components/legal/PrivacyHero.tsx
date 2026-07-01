@@ -32,7 +32,7 @@ export default function PrivacyHero({ content }: { content?: Partial<typeof DEFA
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#FF6B00]/20 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-[58px] lg:py-[86px]">
-        <div className="flex flex-col items-start text-left max-w-3xl">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-3xl">
 
         <h1 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
           {data.title}

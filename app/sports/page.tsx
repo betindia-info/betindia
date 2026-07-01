@@ -63,10 +63,10 @@ export default async function SportsPage() {
 
         <section className="relative overflow-hidden bg-[#050B18]">
           <div className="mx-auto max-w-7xl space-y-9 px-4 py-6 sm:px-6 lg:px-8">
-            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+            <ul className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-4">
               {FEATURES.map(({ icon: Icon, title, sub }) => (
                 <li key={title} className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#FF6B00] backdrop-blur-md">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#FF6B00] backdrop-blur-md">
                     <Icon size={16} strokeWidth={1.8} />
                   </span>
                   <span>
@@ -96,13 +96,23 @@ export default async function SportsPage() {
                 {whyBet.title}
               </h2>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {whyBetItems.map((item: { title: string; description: string }) => (
-                <div key={item.title} className="rounded-[24px] border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-md transition-all duration-300 hover:border-[#FF6B00]/40">
-                  <h3 className="text-base font-bold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {whyBetItems.map((item: { title: string; description: string }, i: number) => {
+                const Icon = FEATURES[i]?.icon ?? FEATURES[0].icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="group relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.04] p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#FF6B00]/40 hover:bg-white/[0.07]"
+                  >
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B00]/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <span className="grid h-11 w-11 place-items-center rounded-xl border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]">
+                      <Icon size={18} strokeWidth={1.8} />
+                    </span>
+                    <h3 className="mt-4 text-base font-bold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">{item.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

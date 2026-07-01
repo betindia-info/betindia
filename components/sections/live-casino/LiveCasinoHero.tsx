@@ -22,7 +22,7 @@ export default function LiveCasinoHero() {
       </div>
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
         {/* LEFT */}
-        <div className="flex flex-col items-start text-left max-w-3xl">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#FF6B00]">
             <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FF6B00] opacity-75" />

@@ -30,7 +30,7 @@ export default function VIPHero({
       <div aria-hidden className="pointer-events-none absolute -bottom-44 -right-20 h-[440px] w-[440px] rounded-full bg-[#138808]/10 blur-2xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-[58px] sm:px-6 lg:px-8 lg:py-[86px]">
-        <div className="flex flex-col items-start text-left max-w-3xl">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-3xl">
           <h1 className="mt-6 text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4.5vw,3.75rem)]">
             {data.title.includes("VIP Privileges") ? (
               <>

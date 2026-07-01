@@ -224,7 +224,7 @@ export default function LatestArticles({ articles = ARTICLES }: { articles?: Art
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-10 flex flex-col items-center md:items-start justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300 backdrop-blur-md">
               <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
               Betting &amp; Casino Insights

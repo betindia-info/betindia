@@ -174,7 +174,7 @@ export default async function Footer({ columns = COLUMNS }: { columns?: FooterCo
                   key={label}
                   href={href || "#"}
                   aria-label={label}
-                  className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-200 hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] hover:shadow-md hover:shadow-[#FF6B00]/10"
+                  className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-200 hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] hover:shadow-md hover:shadow-[#FF6B00]/10"
                 >
                   <Icon size={15} strokeWidth={1.8} />
                 </Link>
